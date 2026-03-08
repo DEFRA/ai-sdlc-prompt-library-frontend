@@ -6,11 +6,11 @@ Read the feature specification and the codebase, then produce a detailed impleme
 
 ```yaml
 triggers:
-  - "plan this feature"
-  - "write an implementation plan"
-  - "plan the implementation"
-  - "create a feature plan"
-  - "how should we implement this"
+  - 'plan this feature'
+  - 'write an implementation plan'
+  - 'plan the implementation'
+  - 'create a feature plan'
+  - 'how should we implement this'
 ```
 
 ## When to Use

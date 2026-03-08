@@ -20,12 +20,15 @@ vi.mock('ioredis', () => ({
 }))
 vi.mock('@hapi/catbox-redis')
 vi.mock('@hapi/catbox-memory')
-vi.mock('../../../../../../src/server/common/helpers/logging/logger.js', () => ({
-  createLogger: () => ({
-    info: (...args) => mockLoggerInfo(...args),
-    error: (...args) => mockLoggerError(...args)
+vi.mock(
+  '../../../../../../src/server/common/helpers/logging/logger.js',
+  () => ({
+    createLogger: () => ({
+      info: (...args) => mockLoggerInfo(...args),
+      error: (...args) => mockLoggerError(...args)
+    })
   })
-}))
+)
 
 describe('#getCacheEngine', () => {
   describe('When Redis cache engine has been requested', () => {

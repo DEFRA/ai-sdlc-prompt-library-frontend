@@ -6,20 +6,20 @@
 
 Every feature lives at `src/server/features/<feature-name>/` and contains exactly these files:
 
-| File | Purpose |
-|------|---------|
-| `index.js` | Hapi plugin — route registration only |
-| `index.njk` | Nunjucks template |
-| `controller.js` | HTTP request/response — delegates to view model |
+| File            | Purpose                                            |
+| --------------- | -------------------------------------------------- |
+| `index.js`      | Hapi plugin — route registration only              |
+| `index.njk`     | Nunjucks template                                  |
+| `controller.js` | HTTP request/response — delegates to view model    |
 | `view-model.js` | Business logic and downstream service coordination |
 
 ## Service Directory Structure
 
 All calls to external systems live at `src/server/services/<service-name>/`:
 
-| File | Purpose |
-|------|---------|
-| `service.js` | Calls to external APIs, HTTP clients, integrations |
+| File            | Purpose                                               |
+| --------------- | ----------------------------------------------------- |
+| `service.js`    | Calls to external APIs, HTTP clients, integrations    |
 | `repository.js` | Data access layer (Redis, SQL) — add only when needed |
 
 `repository.js` is optional. Add it only when the service performs persistent storage operations. Most services will not need it.
@@ -41,11 +41,11 @@ No layer may skip another. Controllers may not call services directly. View mode
 
 ## Naming Conventions
 
-| Thing | Convention |
-|-------|-----------|
-| Directories | `kebab-case` |
-| Files | `kebab-case.js` |
+| Thing             | Convention                |
+| ----------------- | ------------------------- |
+| Directories       | `kebab-case`              |
+| Files             | `kebab-case.js`           |
 | Controller export | `<featureName>Controller` |
-| View model export | `<featureName>ViewModel` |
-| Service export | `<serviceName>Service` |
+| View model export | `<featureName>ViewModel`  |
+| Service export    | `<serviceName>Service`    |
 | Repository export | `<serviceName>Repository` |

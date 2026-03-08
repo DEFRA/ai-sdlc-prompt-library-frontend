@@ -13,7 +13,8 @@ describe('#startServer', () => {
     vi.stubEnv('PORT', '3097')
 
     createServerImport = await import('../../src/server/server.js')
-    startServerImport = await import('../../src/server/common/helpers/start-server.js')
+    startServerImport =
+      await import('../../src/server/common/helpers/start-server.js')
 
     createServerSpy = vi.spyOn(createServerImport, 'createServer')
     hapiServerSpy = vi.spyOn(hapi, 'server')

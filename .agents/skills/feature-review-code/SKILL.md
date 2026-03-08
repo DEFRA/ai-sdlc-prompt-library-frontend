@@ -6,12 +6,12 @@ Read changed files in the context of the wider codebase and produce a structured
 
 ```yaml
 triggers:
-  - "review this code"
-  - "code review"
-  - "check for consistency"
-  - "refactor review"
-  - "review against the codebase"
-  - "does this align with our patterns"
+  - 'review this code'
+  - 'code review'
+  - 'check for consistency'
+  - 'refactor review'
+  - 'review against the codebase'
+  - 'does this align with our patterns'
 ```
 
 ## When to Use
@@ -51,10 +51,12 @@ Identify the patterns already established in the codebase for the same concerns 
 For each finding, classify it as one of:
 
 **Critical** — must be resolved before this code is committed:
+
 - Broken functionality
 - A pattern inconsistency that would introduce a second way of doing something the codebase already does one way (two patterns for the same thing is never acceptable)
 
 **Suggestion** — non-blocking improvement worth considering:
+
 - A cleaner approach that would not change behaviour
 - A missed opportunity to reuse something that already exists
 - A naming or structure choice that is slightly off-pattern but not harmful

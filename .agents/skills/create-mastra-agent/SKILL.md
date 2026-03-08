@@ -6,12 +6,12 @@ Wire up a new specialist agent in the Mastra multi-agent orchestration system, i
 
 ```yaml
 triggers:
-  - "create a mastra agent"
-  - "add an agent to the pipeline"
-  - "wire up a new agent"
-  - "add a mastra workflow step"
-  - "register a new agent"
-  - "implement a mastra skill"
+  - 'create a mastra agent'
+  - 'add an agent to the pipeline'
+  - 'wire up a new agent'
+  - 'add a mastra workflow step'
+  - 'register a new agent'
+  - 'implement a mastra skill'
 ```
 
 ## When to Use
@@ -21,6 +21,7 @@ Use this skill when asked to add a new specialist agent to the Mastra orchestrat
 ## Input / Output
 
 **Input:**
+
 - The name and purpose of the agent (e.g. "feature-spec — produces Given/When/Then scenarios from a feature description")
 - The skill file it corresponds to (e.g. `.agents/skills/feature-spec/SKILL.md`)
 - The input it expects from the previous agent or the user
@@ -29,6 +30,7 @@ Use this skill when asked to add a new specialist agent to the Mastra orchestrat
 If any of these are missing, ask the user before proceeding.
 
 **Output:**
+
 - A TypeScript agent file at `.agents/<agent-name>.ts`
 - A Zod input schema and output schema for the agent's handoff contract
 - A workflow step definition that calls the agent

@@ -12,18 +12,19 @@ An AI SDLC prompt library frontend — a server-rendered Defra digital service t
 
 ## Tech Stack
 
-| Concern | Choice |
-|---|---|
-| Language | JavaScript (ESM, Node ≥ 24) |
-| Server framework | Hapi.js |
-| Templating | Nunjucks |
-| CSS | SCSS compiled via Webpack, GOV.UK Frontend base, Defra custom components |
-| Session cache | Redis (via `@hapi/catbox-redis`) / in-memory for local dev |
-| Package manager | npm |
-| Test runner | Vitest |
-| Agent orchestration | Mastra (`@mastra/core`) with TypeScript |
+| Concern             | Choice                                                                   |
+| ------------------- | ------------------------------------------------------------------------ |
+| Language            | JavaScript (ESM, Node ≥ 24)                                              |
+| Server framework    | Hapi.js                                                                  |
+| Templating          | Nunjucks                                                                 |
+| CSS                 | SCSS compiled via Webpack, GOV.UK Frontend base, Defra custom components |
+| Session cache       | Redis (via `@hapi/catbox-redis`) / in-memory for local dev               |
+| Package manager     | npm                                                                      |
+| Test runner         | Vitest                                                                   |
+| Agent orchestration | Mastra (`@mastra/core`) with TypeScript                                  |
 
 **Infrastructure dependencies (via Docker Compose):**
+
 - Redis 7 — session caching
 - LocalStack — local AWS emulation (S3, SQS, SNS, Firehose)
 - MongoDB 6 — available in compose, not yet wired into the app
@@ -62,23 +63,33 @@ controller → view-model → service → repository
 
 No layer may skip another.
 
+### Nunjucks template search paths
+
+`src/config/nunjucks/nunjucks.js` configures Nunjucks with the following search paths (in addition to `govuk-frontend/dist/`):
+
+- `src/server/common/templates` — shared layouts and partials
+- `src/server/common/components` — shared component macros
+- `src/server` — enables feature templates to use `{% include "features/<name>/_partial.njk" %}`
+
+The `src/server` entry is intentional. It allows feature templates to be split into partials that live alongside the feature, following the template-splitting rule in `code-style.md`.
+
 ---
 
 ## Approved Libraries
 
 Use only libraries from this list for each concern. Do not introduce alternatives without a documented reason.
 
-| Concern | Approved library / approach |
-|---|---|
-| HTTP server | `hapi` |
-| Server plugins | `@hapi/inert`, `@hapi/vision` |
-| Session cache | `@hapi/catbox-redis` (Redis), `@hapi/catbox-memory` (local dev) |
-| Validation | `joi` |
-| Templating | `nunjucks` |
-| HTTP calls (outbound) | Native `fetch` — no axios, node-fetch, or got |
-| CSS | SCSS via Webpack, `govuk-frontend` as base |
-| Testing | `vitest` |
-| Agent orchestration | `@mastra/core` |
+| Concern               | Approved library / approach                                     |
+| --------------------- | --------------------------------------------------------------- |
+| HTTP server           | `hapi`                                                          |
+| Server plugins        | `@hapi/inert`, `@hapi/vision`                                   |
+| Session cache         | `@hapi/catbox-redis` (Redis), `@hapi/catbox-memory` (local dev) |
+| Validation            | `joi`                                                           |
+| Templating            | `nunjucks`                                                      |
+| HTTP calls (outbound) | Native `fetch` — no axios, node-fetch, or got                   |
+| CSS                   | SCSS via Webpack, `govuk-frontend` as base                      |
+| Testing               | `vitest`                                                        |
+| Agent orchestration   | `@mastra/core`                                                  |
 
 If a library is not listed here, check whether an approved alternative covers the need before adding a new dependency.
 

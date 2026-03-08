@@ -11,7 +11,7 @@
 All pages must include `govuk-frontend` CSS. Use the rebranded template class:
 
 ```html
-<html class="govuk-template govuk-template--rebranded">
+<html class="govuk-template govuk-template--rebranded"></html>
 ```
 
 ### Font
@@ -26,11 +26,11 @@ Use GOV.UK colour classes wherever possible. The following are Defra-specific ov
 
 ### Defra Brand Colours
 
-| Variable | Hex | Usage |
-|----------|-----|-------|
-| `$defra-green` | `#008531` | Nav, hero, footer border, version label, tile hover border, active indicators |
-| `$defra-green-light` | `#00a33b` | Header service name, logo |
-| `$defra-green-dark` | `#006a27` | Button hover |
+| Variable             | Hex       | Usage                                                                         |
+| -------------------- | --------- | ----------------------------------------------------------------------------- |
+| `$defra-green`       | `#008531` | Nav, hero, footer border, version label, tile hover border, active indicators |
+| `$defra-green-light` | `#00a33b` | Header service name, logo                                                     |
+| `$defra-green-dark`  | `#006a27` | Button hover                                                                  |
 
 Defra colour variables are defined in `src/client/stylesheets/variables/_colours.scss`.
 
@@ -110,17 +110,17 @@ Each component has its own SCSS file in `src/client/stylesheets/components/`. Al
 
 ### Where to add CSS
 
-| File | Component |
-|------|-----------|
-| `components/_defra-header.scss` | 7.1 Header |
-| `components/_defra-service-navigation.scss` | 7.2 Service Navigation |
-| `components/_defra-hero.scss` | 7.3 Hero Banner |
-| `components/_defra-version-banner.scss` | 7.4 Version Banner |
-| `components/_defra-tile.scss` | 7.5 Tiles |
-| `components/_defra-section.scss` | 7.6 Sections |
-| `components/_defra-footer.scss` | 7.8 Footer |
-| `components/_defra-breadcrumbs.scss` | 7.9 Breadcrumbs (Inverse) |
-| `components/_defra-subnav.scss` | 7.10 Side Navigation |
+| File                                        | Component                 |
+| ------------------------------------------- | ------------------------- |
+| `components/_defra-header.scss`             | 7.1 Header                |
+| `components/_defra-service-navigation.scss` | 7.2 Service Navigation    |
+| `components/_defra-hero.scss`               | 7.3 Hero Banner           |
+| `components/_defra-version-banner.scss`     | 7.4 Version Banner        |
+| `components/_defra-tile.scss`               | 7.5 Tiles                 |
+| `components/_defra-section.scss`            | 7.6 Sections              |
+| `components/_defra-footer.scss`             | 7.8 Footer                |
+| `components/_defra-breadcrumbs.scss`        | 7.9 Breadcrumbs (Inverse) |
+| `components/_defra-subnav.scss`             | 7.10 Side Navigation      |
 
 ### 7.1 Header
 
@@ -182,10 +182,10 @@ Do not modify this pattern.
 
 Use GOV.UK Frontend breakpoints:
 
-| Name | Value |
-|------|-------|
-| Mobile | `20rem` (320px) |
-| Tablet | `40.0625rem` (641px) |
+| Name    | Value                |
+| ------- | -------------------- |
+| Mobile  | `20rem` (320px)      |
+| Tablet  | `40.0625rem` (641px) |
 | Desktop | `48.0625rem` (769px) |
 
 Additional Defra breakpoints: `768px` (nav collapse), `480px` (small mobile).

@@ -12,11 +12,13 @@ A Hapi.js server-rendered web application using Nunjucks templates and the GOV.U
 Full rules are in `.agents/rules/`. Summaries:
 
 **Server architecture** (`.agents/rules/server-architecture.md`)
+
 - Features: `src/server/features/<name>/` — `index.js`, `index.njk`, `controller.js`, `view-model.js`
 - Services: `src/server/services/<name>/` — `service.js`, optional `repository.js`
 - Flow: `controller → view-model → service → repository`. No layer skips another.
 
 **Testing** (`.agents/rules/testing.md`)
+
 - Tests live in `test/unit/` (mirrors `src/`) and `test/integration/` — never adjacent to source
 - Unit tests mock all dependencies; integration tests start the server and mock only external services
 - Test names read as natural-language sentences confirming intended behaviour
@@ -25,6 +27,7 @@ Full rules are in `.agents/rules/`. Summaries:
 - Test data as named constants at the top of the file; factories for complex/shared shapes
 
 **Directory philosophy**
+
 - Intention-revealing names, similar things grouped together, flat over nested
 
 ## AI System

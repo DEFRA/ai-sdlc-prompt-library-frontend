@@ -6,11 +6,11 @@ Write a complete, testable feature specification with Given/When/Then scenarios 
 
 ```yaml
 triggers:
-  - "write a feature spec"
-  - "specify this feature"
-  - "define the scenarios for"
-  - "write Given/When/Then for"
-  - "create a feature specification"
+  - 'write a feature spec'
+  - 'specify this feature'
+  - 'define the scenarios for'
+  - 'write Given/When/Then for'
+  - 'create a feature specification'
 ```
 
 ## When to Use

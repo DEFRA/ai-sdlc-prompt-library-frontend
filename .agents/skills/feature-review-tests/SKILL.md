@@ -6,11 +6,11 @@ Review the proposed test names in an implementation plan against the project tes
 
 ```yaml
 triggers:
-  - "review the test names"
-  - "check the tests against the rules"
-  - "approve the test names"
-  - "are these test names correct"
-  - "review tests in the plan"
+  - 'review the test names'
+  - 'check the tests against the rules'
+  - 'approve the test names'
+  - 'are these test names correct'
+  - 'review tests in the plan'
 ```
 
 ## When to Use
