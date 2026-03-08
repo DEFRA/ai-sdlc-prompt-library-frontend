@@ -6,11 +6,11 @@ Implement a feature by writing all files described in the implementation plan, r
 
 ```yaml
 triggers:
-  - "implement the feature"
-  - "write the code"
-  - "build the feature"
-  - "write the implementation"
-  - "code up this feature"
+  - 'implement the feature'
+  - 'write the code'
+  - 'build the feature'
+  - 'write the implementation'
+  - 'code up this feature'
 ```
 
 ## When to Use

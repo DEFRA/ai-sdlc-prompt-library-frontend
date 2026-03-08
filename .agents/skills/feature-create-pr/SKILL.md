@@ -6,12 +6,12 @@ Branch, commit, push, and open a pull request for a completed feature. The PR bo
 
 ```yaml
 triggers:
-  - "create a pull request"
-  - "open a PR"
-  - "push and PR"
-  - "raise a PR"
-  - "commit and push"
-  - "ship this feature"
+  - 'create a pull request'
+  - 'open a PR'
+  - 'push and PR'
+  - 'raise a PR'
+  - 'commit and push'
+  - 'ship this feature'
 ```
 
 ## When to Use
@@ -39,6 +39,7 @@ If `clearedToCommit` is false, stop immediately and tell the user there are Crit
 ### Step 1: Read the work logs
 
 Read the following files:
+
 - The feature specification (`agent-logs/<feature-name>/feature-specification.md`)
 - The implementation plan (`agent-logs/<feature-name>/implementation-plan.md`)
 - `agent-logs/<feature-name>/code-review.md` (for test coverage summary)
@@ -85,7 +86,7 @@ Write the PR body using the structure below. Read the work logs to fill it in �
 
 **Summary:** 2–5 bullet points. What was built. What it replaces or adds. No implementation detail.
 
-**Test coverage:** One short paragraph. Describe the *type* of coverage added — what scenarios are covered at unit level, what is verified at integration level. Do not list test names.
+**Test coverage:** One short paragraph. Describe the _type_ of coverage added — what scenarios are covered at unit level, what is verified at integration level. Do not list test names.
 
 **Environment or config changes:** Only include this section if a new environment variable, infrastructure dependency, config file, or feature flag was introduced. If none, omit the section entirely.
 

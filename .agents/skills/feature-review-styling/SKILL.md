@@ -6,11 +6,11 @@ Review the implementation plan for any UI or template files and produce styling 
 
 ```yaml
 triggers:
-  - "review the styling"
-  - "check the UI components"
-  - "what govuk components should I use"
-  - "review the template files"
-  - "styling guidance for this feature"
+  - 'review the styling'
+  - 'check the UI components'
+  - 'what govuk components should I use'
+  - 'review the template files'
+  - 'styling guidance for this feature'
 ```
 
 ## When to Use

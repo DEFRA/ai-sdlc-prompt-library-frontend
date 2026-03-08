@@ -6,14 +6,14 @@ Review the outcome of a completed piece of work, update project documentation to
 
 ```yaml
 triggers:
-  - "update the docs"
-  - "update documentation"
-  - "docs update"
-  - "update architecture"
-  - "update agents.md"
-  - "reflect decisions in docs"
-  - "what rules should we add"
-  - "review what went wrong"
+  - 'update the docs'
+  - 'update documentation'
+  - 'docs update'
+  - 'update architecture'
+  - 'update agents.md'
+  - 'reflect decisions in docs'
+  - 'what rules should we add'
+  - 'review what went wrong'
 ```
 
 ## When to Use
@@ -38,6 +38,7 @@ If either is missing, ask before proceeding.
 ### Step 1: Read the work logs
 
 Read every file in `agent-logs/<feature-name>/`:
+
 - `feature-specification.md`
 - `implementation-plan.md`
 - `what-went-wrong.md` (if it exists)
@@ -46,6 +47,7 @@ Read every file in `agent-logs/<feature-name>/`:
 ### Step 2: Read the current documentation
 
 Read these files in full:
+
 - `ARCHITECTURE.md`
 - `AGENTS.md`
 - `STYLING.md`
@@ -68,6 +70,7 @@ For each gap: identify the correct file to update and what to add.
 Read `what-went-wrong.md` entries. For each entry ask: **would a rule have prevented this?**
 
 If yes, draft a candidate rule:
+
 - One sentence, imperative, specific enough to be actionable.
 - Note which rules file it belongs in (or whether a new file is needed).
 - Note whether it should be wired into any agent's `loadAgentInstructions()` call.
@@ -91,10 +94,10 @@ Write `agent-logs/<feature-name>/docs-update.md` with the following structure:
 
 ### Documentation changes applied
 
-| File | What changed |
-|---|---|
+| File              | What changed                    |
+| ----------------- | ------------------------------- |
 | `ARCHITECTURE.md` | Added X to the tech stack table |
-| `AGENTS.md` | Added Y to the rules table |
+| `AGENTS.md`       | Added Y to the rules table      |
 
 If none: _No documentation changes were required._
 

@@ -20,7 +20,9 @@ describe('#errors', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining('Page not found | ai-sdlc-prompt-library-frontend')
+      expect.stringContaining(
+        'Page not found | ai-sdlc-prompt-library-frontend'
+      )
     )
     expect(statusCode).toBe(statusCodes.notFound)
   })
