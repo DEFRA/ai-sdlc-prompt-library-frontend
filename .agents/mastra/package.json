@@ -1,0 +1,20 @@
+{
+  "name": "@ai-defra/agents",
+  "version": "1.0.0",
+  "description": "Mastra multi-agent orchestration layer for AI Defra Search",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@mastra/core": "^0.10.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

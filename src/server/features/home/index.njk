@@ -1,0 +1,97 @@
+{% extends "layouts/page.njk" %}
+
+{% block content %}
+
+  {# Hero banner with inverse breadcrumbs #}
+  <div class="defra-hero">
+    <div class="govuk-width-container">
+
+      <nav class="govuk-breadcrumbs defra-breadcrumbs--inverse" aria-label="Breadcrumb">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Home</a>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="govuk-grid-row govuk-!-margin-top-4">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">AI SDLC Prompt Library</h1>
+          <p class="govuk-body-l">
+            A shared resource for Defra teams building AI-assisted digital services. Browse prompts, guidelines, and tools to support every stage of the software development lifecycle.
+          </p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <div class="defra-hero__whats-new">
+            <h2 class="govuk-heading-s" style="color:#ffffff;">What's new</h2>
+            <p class="govuk-body-s" style="color:#ffffff;margin-bottom:0;">Prompt templates for code review and test generation are now available.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="govuk-width-container">
+
+    {# Version banner #}
+    <div class="defra-version-banner">
+      <span class="defra-version-banner__label">v{{ version }}</span>
+      <span class="defra-version-banner__text">{{ versionNote }}</span>
+    </div>
+
+    {# Tile grid #}
+    <section class="defra-section" aria-labelledby="section-explore">
+      <h2 class="govuk-heading-l" id="section-explore">Explore</h2>
+      <ul class="govuk-grid-row defra-tile-grid">
+        {% for tile in tiles %}
+          <li class="govuk-grid-column-one-third">
+            <div class="defra-tile">
+              <h3 class="govuk-heading-m defra-tile__title">
+                <a class="defra-tile__link" href="{{ tile.href }}">{{ tile.title }}</a>
+              </h3>
+              <p class="govuk-body-s defra-tile__body">{{ tile.body }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+    {# Two-column section — content + subnav #}
+    <section class="defra-section" aria-labelledby="section-overview">
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-one-quarter">
+          <nav aria-label="Page navigation">
+            <ul class="govuk-list">
+              {% for item in subnavItems %}
+                <li>
+                  {% if item.current %}
+                    <a class="defra-subnav__link defra-subnav__link--current" href="{{ item.href }}" aria-current="true">{{ item.text }}</a>
+                  {% else %}
+                    <a class="defra-subnav__link" href="{{ item.href }}">{{ item.text }}</a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+
+        <div class="govuk-grid-column-three-quarters">
+          <h2 class="govuk-heading-l" id="section-overview">Overview</h2>
+          <p class="govuk-body">
+            This library provides structured prompts, guidelines, and resources to help Defra development teams work effectively with AI tools. All content follows Defra and GOV.UK standards.
+          </p>
+          <p class="govuk-body">
+            Content is maintained by the Defra AI practice and reviewed regularly. If you have suggestions or feedback, contact your platform team.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+{% endblock %}
