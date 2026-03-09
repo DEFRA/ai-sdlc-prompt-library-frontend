@@ -1,4 +1,4 @@
-@use "variables/colours" as *;
+@use 'variables/colours' as *;
 
 .defra-tile-grid {
   list-style: none;
@@ -46,7 +46,7 @@
   text-decoration: underline;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;

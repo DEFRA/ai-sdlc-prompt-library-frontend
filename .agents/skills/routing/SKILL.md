@@ -34,14 +34,14 @@ Rules:
 The standard feature pipeline runs in this order:
 
 ```
-feature-spec
+feature-create-specification
   → feature-plan
     → [human approval checkpoint]
       → feature-review-tests  ─┐  (parallel)
       → feature-review-styling ┘
         → feature-write  (loops up to 3 times on test failure)
           → feature-review-code
-            → feature-docs-update
+            → feature-update-docs
               → feature-create-pr
 ```
 

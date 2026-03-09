@@ -1,4 +1,4 @@
-@use "variables/colours" as *;
+@use 'variables/colours' as *;
 
 .defra-footer {
   background-color: #f3f2f1;
@@ -17,7 +17,9 @@
 
   &:focus {
     background-color: #ffdd00;
-    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    box-shadow:
+      0 -2px #ffdd00,
+      0 4px #0b0c0c;
     outline: 3px solid transparent;
     color: #0b0c0c;
     text-decoration: none;

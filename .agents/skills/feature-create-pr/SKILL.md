@@ -28,7 +28,7 @@ You run git commands to create the branch, stage the right files, commit, and pu
 
 - The feature name (kebab-case)
 - The list of implemented files (from `feature-write`)
-- The specification path (from `feature-spec`)
+- The specification path (from `feature-create-specification`)
 - The plan path (from `feature-plan`)
 - Whether the code is cleared to commit (from `feature-review-code` — must be `true`)
 

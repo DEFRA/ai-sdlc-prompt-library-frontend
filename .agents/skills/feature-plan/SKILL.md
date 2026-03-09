@@ -15,7 +15,7 @@ triggers:
 
 ## When to Use
 
-Use this skill after `feature-spec` has produced a specification. The plan is reviewed by a human before implementation starts.
+Use this skill after `feature-create-specification` has produced a specification. The plan is reviewed by a human before implementation starts.
 
 ## Persona
 

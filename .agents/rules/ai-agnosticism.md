@@ -8,7 +8,6 @@ All AI content lives in `.agents/`. Platform config files are thin wrappers that
 | ------------------------- | --------------------------------------------------------------------------- |
 | Coding rules              | `.agents/rules/<concern>.md`                                                |
 | Agent persona / behaviour | `## Persona` in `.agents/skills/<name>/SKILL.md`                            |
-| Agent orchestration       | `.agents/mastra/` — TypeScript only, no prose                               |
 | Platform wrappers         | `CLAUDE.md`, `.cursor/rules/project.mdc`, `.github/copilot-instructions.md` |
 
 ## Rules

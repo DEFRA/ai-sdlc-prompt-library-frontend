@@ -71,7 +71,7 @@ If yes, draft a candidate rule:
 
 - One sentence, imperative, specific enough to be actionable.
 - Note which rules file it belongs in (or whether a new file is needed).
-- Note whether it should be wired into any agent's `loadAgentInstructions()` call.
+- Note which skill or agent would benefit from having it loaded.
 
 ### Step 5: Write the output document
 

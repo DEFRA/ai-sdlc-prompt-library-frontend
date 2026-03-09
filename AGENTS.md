@@ -20,37 +20,41 @@ All AI-specific content lives in `.agents/`. Platform configuration files (`CLAU
 .agents/
   rules/          # Project rules — loaded into agent instructions at runtime
   skills/         # Skills — one directory per skill, each containing a SKILL.md
-  mastra/         # Mastra multi-agent orchestration (TypeScript plumbing only)
 ```
 
 ### `rules/`
 
 Plain-markdown rule files. Each file covers one concern. Current rules:
 
-| File                     | Covers                                                            |
-| ------------------------ | ----------------------------------------------------------------- |
-| `ai-agnosticism.md`      | Where AI content lives and why platform files are thin wrappers   |
-| `code-style.md`          | Extract constants, use native fetch, split Nunjucks into sections |
-| `server-architecture.md` | Feature and service directory structure, dependency flow, naming  |
-| `styling.md`             | Defra component prefix, SCSS file locations, focus state rules    |
-| `testing.md`             | Test naming, data organisation, assertion style                   |
+| File                       | Covers                                                           |
+| -------------------------- | ---------------------------------------------------------------- |
+| `ai-agnosticism.md`        | Where AI content lives and why platform files are thin wrappers  |
+| `code-style.md`            | JavaScript standards, constants, fetch, Nunjucks conventions     |
+| `config.md`                | Convict schema rules, startup validation, defaults policy        |
+| `logging.md`               | Pino logging structure, security, log levels                     |
+| `naming.md`                | Identifier naming — functions, variables, constants, directories |
+| `server-architecture.md`   | Feature and service directory structure, dependency flow, naming |
+| `single-responsibility.md` | Module and function cohesion rules                               |
+| `styling.md`               | Defra component prefix, SCSS file locations, styling priority    |
+| `testing.md`               | Test naming, data organisation, assertion style                  |
 
-To add a new rule: create or edit a file in `.agents/rules/`. Agents that need it will load it via `loadAgentInstructions()` in their TypeScript definition.
+To add a new rule: use the `create-rule` skill, or create/edit a file directly in `.agents/rules/`.
 
 ### `skills/` — current skills
 
-| Skill                    | Triggered by                                               |
-| ------------------------ | ---------------------------------------------------------- |
-| `create-mastra-agent`    | Creating a new Mastra agent                                |
-| `feature-spec`           | Writing a feature specification                            |
-| `feature-plan`           | Planning a feature implementation                          |
-| `feature-review-tests`   | Reviewing planned test names                               |
-| `feature-review-styling` | Reviewing planned styling approach                         |
-| `feature-write`          | Writing the feature implementation                         |
-| `feature-review-code`    | Reviewing implemented code for consistency                 |
-| `feature-docs-update`    | Updating documentation after completed work                |
-| `feature-create-pr`      | Branching, committing, pushing, and opening a pull request |
-| `routing`                | Routing user requests to the right skill                   |
+| Skill                          | Triggered by                                               |
+| ------------------------------ | ---------------------------------------------------------- |
+| `create-rule`                  | Creating a new rules file                                  |
+| `create-skill`                 | Creating a new skill file                                  |
+| `feature-create-specification` | Writing a feature specification                            |
+| `feature-plan`                 | Planning a feature implementation                          |
+| `feature-review-tests`         | Reviewing planned test names                               |
+| `feature-review-styling`       | Reviewing planned styling approach                         |
+| `feature-write`                | Writing the feature implementation                         |
+| `feature-review-code`          | Reviewing implemented code for consistency                 |
+| `feature-update-docs`          | Updating documentation after completed work                |
+| `feature-create-pr`            | Branching, committing, pushing, and opening a pull request |
+| `routing`                      | Routing user requests to the right skill                   |
 
 ### `skills/`
 
@@ -64,24 +68,13 @@ A `SKILL.md` must contain:
 
 The routing agent reads all `SKILL.md` files automatically to discover available agents. Do not register agents manually anywhere else.
 
-To add a new skill: create `.agents/skills/<skill-name>/SKILL.md` with the sections above. If it needs a Mastra agent, use the `create-mastra-agent` skill.
-
-### `mastra/`
-
-TypeScript orchestration only. Agent files in this directory contain:
-
-- Zod input/output schemas (the data contracts between pipeline steps)
-- An `Agent` instantiation that loads its instructions from the corresponding `SKILL.md` via `loadAgentInstructions()`
-
-No prose, personas, or rules are hardcoded in TypeScript. If you find instructions written directly into a TypeScript agent file, move them to the appropriate `SKILL.md` or rules file.
+To add a new skill: use the `create-skill` skill, or create `.agents/skills/<skill-name>/SKILL.md` directly with the sections above.
 
 ## Adding or Changing Things
 
-| I want to…                                   | Where to change                                                               |
-| -------------------------------------------- | ----------------------------------------------------------------------------- |
-| Change how an agent behaves                  | Edit `## Persona` in its `SKILL.md`                                           |
-| Add a project-wide coding rule               | Add or edit a file in `.agents/rules/`                                        |
-| Wire a rule into an agent                    | Add the rules filename to `loadAgentInstructions()` in the agent's `.ts` file |
-| Add a new skill/agent                        | Create `.agents/skills/<name>/SKILL.md`, then use `create-mastra-agent`       |
-| Change the Mastra pipeline                   | Edit `.agents/mastra/pipeline-workflow.ts`                                    |
-| Change data contracts between pipeline steps | Edit the Zod schemas in the relevant agent `.ts` file                         |
+| I want to…                     | Where to change                        |
+| ------------------------------ | -------------------------------------- |
+| Change how an agent behaves    | Edit `## Persona` in its `SKILL.md`    |
+| Add a project-wide coding rule | Add or edit a file in `.agents/rules/` |
+| Add a new skill                | Use the `create-skill` skill           |
+| Add a new rule                 | Use the `create-rule` skill            |
