@@ -32,6 +32,29 @@ controller → view-model → service → repository
 
 No layer may skip another. Controllers may not call services directly. View models may not handle HTTP concerns.
 
+## Framework
+
+- Use Hapi.js exclusively — do not use Express or any other HTTP framework.
+
+## Controller Patterns
+
+- Export controllers as named functions.
+- Wrap every handler body in try/catch; log errors with `request.logger`; return a user-friendly error response.
+- Delegate all business logic to the view model — controllers handle only HTTP request/response concerns.
+
+```javascript
+// ✅ Good
+export async function myController(request, h) {
+  try {
+    const viewModel = await myViewModel(request.params)
+    return h.view('my-feature/index', viewModel)
+  } catch (error) {
+    request.logger.error({ err: error }, 'myController failed')
+    return h.view('error').code(500)
+  }
+}
+```
+
 ## Directory Philosophy
 
 - **Intention-revealing names**: a reader should know what a directory contains from its name alone.
