@@ -10,6 +10,17 @@ Full visual reference is in `STYLING.md`. This file contains the rules agents mu
 - No rounded corners — `border-radius: 0` everywhere.
 - Focus states must follow the GOV.UK yellow pattern — do not modify it.
 
+## Styling Priority
+
+Follow this order before writing any new styles:
+
+1. **Reuse an existing `defra-` or `govuk-` class** — always check first. Prefer consistency over a perfect design match.
+2. **Use a GOV.UK Design System utility** — search `node_modules/govuk-frontend` for applicable components and utilities.
+3. **Create a new `defra-` component** — only as a last resort, and only with explicit user approval.
+
+- Never rewrite or duplicate an existing style rule.
+- Extract all hardcoded values (colours, dimensions) as SCSS variables before use.
+
 ## SCSS structure
 
 | Path                                                   | Purpose                      |

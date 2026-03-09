@@ -1,5 +1,11 @@
 # Testing
 
+## Core Principles
+
+- **Test behaviour, not implementation.** Verify what the system does, not how it does it.
+- **Tests as documentation.** A new developer should understand expected behaviour by reading the tests alone.
+- **Confidence over coverage.** Tests should enable safe refactoring — not hit arbitrary percentages.
+
 ## Directory structure
 
 Tests live in `test/`, not adjacent to source files.
@@ -44,3 +50,17 @@ export const buildAccount = (overrides = {}) => ({
 ## One assertion per outcome
 
 Do not chain multiple `expect` calls to verify the same result different ways.
+
+## Test isolation
+
+- Write tests that are independent and runnable in any order without affecting other tests.
+- Mock all external dependencies (databases, APIs, file systems) in unit tests.
+- Use `beforeEach`/`afterEach` to reset state between tests.
+
+## Parameterised tests
+
+Consolidate tests that verify the same behaviour with minor input variations into parameterised tests rather than separate tests.
+
+## Decision framework
+
+When in doubt: would a new developer understand the system's expected behaviour by reading this test?

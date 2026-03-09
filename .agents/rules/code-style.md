@@ -1,5 +1,12 @@
 # Code Style
 
+## JavaScript Standards
+
+- Write all source files in vanilla JavaScript — no TypeScript. Use JSDoc comments for type annotations.
+- Use ES Modules: `export const foo = ...` and `import { foo } from '...'`, not `module.exports` or `require`.
+- Use named exports — avoid default exports.
+- Use the `~` alias for internal project imports: `import { foo } from '~/src/server/common/...'`.
+
 ## Extract constants
 
 Never hardcode values inline. Extract all magic strings, numbers, and URLs to named constants.
@@ -27,3 +34,19 @@ Split templates into logical sections using `{% include %}` or `{% block %}`. A 
 
 - Partials live in `src/server/common/templates/partials/`.
 - Feature-specific includes live alongside the feature template at `src/server/features/<name>/`.
+- Every template that requires data must be backed by its `view-model.js`. The view model is the sole source of data for the template — no logic in the `.njk` file.
+- Define all view model properties using JSDoc, with types for every field.
+
+```javascript
+/**
+ * @param {Object} params
+ * @param {string} params.title
+ * @param {boolean} params.isActive
+ */
+export class MyViewModel {
+  constructor({ title, isActive }) {
+    this.title = title
+    this.isActive = isActive
+  }
+}
+```
