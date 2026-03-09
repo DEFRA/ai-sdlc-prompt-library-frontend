@@ -48,6 +48,10 @@ Verify every item in the checklist below before writing the file.
 
 Create the file at `.agents/rules/<name>.md`.
 
+### Step 6: Update AGENTS.md
+
+If the new rule changes the overall structure of the agent system or introduces a concern not previously documented, update `AGENTS.md` to reflect it.
+
 ## Output Format
 
 The rules file must follow this structure:

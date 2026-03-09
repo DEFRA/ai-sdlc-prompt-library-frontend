@@ -8,8 +8,8 @@ Applies to all files in `src/`: function names, variables, constants, directorie
 
 ## Directories
 
-- Use domain-specific terms — never generic containers like `utils`, `helpers`, `shared`, `common`, or `lib`.
-- Name directories after the domain they contain: `authentication/`, `user-notifications/`, not `stuff/`.
+- Use domain-specific terms that describe what the directory contains: `authentication/`, `user-notifications/`, `prompt-cards/`.
+- Treat names like `utils/`, `helpers/`, `shared/`, `common/`, and `lib/` as a signal to find a more specific name.
 
 ## Functions
 

@@ -10,10 +10,8 @@ triggers:
   - 'update documentation'
   - 'docs update'
   - 'update architecture'
-  - 'update agents.md'
   - 'reflect decisions in docs'
   - 'what rules should we add'
-  - 'review what went wrong'
 ```
 
 ## When to Use

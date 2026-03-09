@@ -9,6 +9,8 @@ triggers:
   - 'route this goal'
   - 'which agents should handle this'
   - 'decompose this request'
+  - 'what agents do I need for this'
+  - 'plan a pipeline for this goal'
 ```
 
 ## When to Use

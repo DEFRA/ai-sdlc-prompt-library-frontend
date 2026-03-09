@@ -71,6 +71,10 @@ Verify every item below before writing the file:
 
 Create the skill at `.agents/skills/<verb-phrase>/SKILL.md`.
 
+### Step 7: Update AGENTS.md
+
+If the new skill changes the overall structure of the agent system or introduces a capability not previously documented, update `AGENTS.md` to reflect it.
+
 ## Output Format
 
 The skill file must follow this structure:

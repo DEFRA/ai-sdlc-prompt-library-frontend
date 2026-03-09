@@ -14,5 +14,4 @@ All AI content lives in `.agents/`. Platform config files are thin wrappers that
 ## Rules
 
 - Never write rules or personas directly into a platform file.
-- Never hardcode prose or instructions in a Mastra TypeScript agent file.
-- When you add a rule, add it to the relevant `.agents/rules/` file and update `AGENTS.md` if it changes the overall structure.
+- Never hardcode prose or instructions in an orchestration agent file.

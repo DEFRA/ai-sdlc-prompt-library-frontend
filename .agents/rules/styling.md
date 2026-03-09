@@ -4,11 +4,11 @@ Full visual reference is in `STYLING.md`. This file contains the rules agents mu
 
 ## Principles
 
-- Use GOV.UK Frontend classes for all typography, layout, spacing, and standard components. Do not redefine them.
-- All custom Defra components use the `defra-` prefix. Never use `app-` or unprefixed class names.
-- Never modify `govuk-` classes directly.
-- No rounded corners — `border-radius: 0` everywhere.
-- Focus states must follow the GOV.UK yellow pattern — do not modify it.
+- Use GOV.UK Frontend classes for all typography, layout, spacing, and standard components — treat them as read-only.
+- Use the `defra-` prefix for all custom component classes.
+- Override `govuk-` styles via specificity or wrapper elements — treat `govuk-` class definitions as read-only.
+- Set `border-radius: 0` on all custom components.
+- Match the GOV.UK yellow focus pattern exactly on all interactive elements.
 
 ## Styling Priority
 
@@ -18,7 +18,7 @@ Follow this order before writing any new styles:
 2. **Use a GOV.UK Design System utility** — search `node_modules/govuk-frontend` for applicable components and utilities.
 3. **Create a new `defra-` component** — only as a last resort, and only with explicit user approval.
 
-- Never rewrite or duplicate an existing style rule.
+- Reuse existing style rules — creating duplicates is never acceptable.
 - Extract all hardcoded values (colours, dimensions) as SCSS variables before use.
 
 ## SCSS structure

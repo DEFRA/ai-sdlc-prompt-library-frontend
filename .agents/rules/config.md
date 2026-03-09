@@ -35,7 +35,7 @@ Load environment-specific files via: `config.loadFile('./config/' + config.get('
 ## Defaults Policy
 
 - Set defaults only in environment-specific JSON files (`development.json`, `test.json`).
-- Keep `production.json` free of default values — all production config must come from real environment variables.
+- Set no default values in `production.json` — all production config must come from real environment variables.
 - Never hardcode default values in the schema definition.
 
 ## Environment Variables

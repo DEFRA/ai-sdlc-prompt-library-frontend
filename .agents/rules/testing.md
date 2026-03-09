@@ -8,7 +8,7 @@
 
 ## Directory structure
 
-Tests live in `test/`, not adjacent to source files.
+Place all tests in `test/`, mirroring the structure of `src/`.
 
 ```
 test/
@@ -49,7 +49,7 @@ export const buildAccount = (overrides = {}) => ({
 
 ## One assertion per outcome
 
-Do not chain multiple `expect` calls to verify the same result different ways.
+Write one `expect` per distinct outcome.
 
 ## Test isolation
 
@@ -60,6 +60,10 @@ Do not chain multiple `expect` calls to verify the same result different ways.
 ## Parameterised tests
 
 Consolidate tests that verify the same behaviour with minor input variations into parameterised tests rather than separate tests.
+
+## Group validation failures
+
+For endpoints that validate multiple fields or field values, write one parametrised test covering a representative sample — not one test per invalid input. The goal is to show the implementation understands the category of failure, not to enumerate every possible bad value.
 
 ## Decision framework
 

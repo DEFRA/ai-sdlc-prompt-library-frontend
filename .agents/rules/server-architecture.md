@@ -30,7 +30,7 @@ All calls to external systems live at `src/server/services/<service-name>/`:
 controller → view-model → service → repository
 ```
 
-No layer may skip another. Controllers may not call services directly. View models may not handle HTTP concerns.
+Pass all calls through the layer chain in order: controller → view-model → service → repository.
 
 ## Framework
 

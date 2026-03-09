@@ -4,7 +4,7 @@
 
 - Write all source files in vanilla JavaScript — no TypeScript. Use JSDoc comments for type annotations.
 - Use ES Modules: `export const foo = ...` and `import { foo } from '...'`, not `module.exports` or `require`.
-- Use named exports — avoid default exports.
+- Use named exports only — not default exports.
 - Use the `~` alias for internal project imports: `import { foo } from '~/src/server/common/...'`.
 
 ## Extract constants
@@ -26,7 +26,7 @@ if (status === STATUS_PUBLISHED) { ... }
 
 ## HTTP calls
 
-Use native `fetch` for all API calls. Do not use axios, node-fetch, got, or any other HTTP library.
+Use native `fetch` for all API calls.
 
 ## Nunjucks templates
 

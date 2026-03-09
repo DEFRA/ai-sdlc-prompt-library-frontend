@@ -13,9 +13,9 @@ Applies to all server-side code in `src/server/`. Client-side code does not use 
 
 ## Security
 
-- Never log bearer tokens, API keys, passwords, or authentication headers — not even partially.
+- Exclude bearer tokens, API keys, passwords, and authentication headers from all log entries.
 - Exclude PII (email addresses, national IDs, payment data, phone numbers) from all log entries.
-- Never log database connection strings, credentials, or full request/response bodies.
+- Exclude database connection strings, credentials, and full request/response bodies from all log entries.
 
 ## Message Structure
 
@@ -37,7 +37,7 @@ Applies to all server-side code in `src/server/`. Client-side code does not use 
 ## External API Calls
 
 - Log initiation, response status, and duration for every external API call.
-- Never log full request or response payloads.
+- Omit full request and response payloads from all external API call logs.
 
 ## Example
 
