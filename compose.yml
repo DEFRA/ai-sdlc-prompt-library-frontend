@@ -43,7 +43,7 @@ services:
 
   ################################################################################
 
-  your-frontend:
+  ai-sdlc-prompt-library-frontend:
     build: ./
     ports:
       - '3000:3000'

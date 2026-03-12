@@ -1,6 +1,7 @@
 # AGENTS.md
 
-This file is the canonical reference for how AI agents, rules, and skills are organised in this project. It is platform-agnostic — the same structure is used by Claude, Cursor, GitHub Copilot, and any other AI tooling.
+This file is the canonical reference for how AI agents, rules, and skills are organised in this project. It is
+platform-agnostic — the same structure is used by Claude, Cursor, GitHub Copilot, and any other AI tooling.
 
 ## Related files
 
@@ -12,7 +13,9 @@ This file is the canonical reference for how AI agents, rules, and skills are or
 
 ## Principle
 
-All AI-specific content lives in `.agents/`. Platform configuration files (`CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`) are thin wrappers that point here. **Do not add rules, skills, or agent definitions directly to a platform file.** Add them to the appropriate place in `.agents/` instead.
+All AI-specific content lives in `.agents/`. Platform configuration files (`CLAUDE.md`, `.cursor/rules/`,
+`.github/copilot-instructions.md`) are thin wrappers that point here. **Do not add rules, skills, or agent definitions
+directly to a platform file.** Add them to the appropriate place in `.agents/` instead.
 
 ## Directory Structure
 
@@ -54,21 +57,17 @@ To add a new rule: use the `create-rule` skill, or create/edit a file directly i
 | `feature-review-code`          | Reviewing implemented code for consistency                 |
 | `feature-update-docs`          | Updating documentation after completed work                |
 | `feature-create-pr`            | Branching, committing, pushing, and opening a pull request |
+| `review-docs`                  | Reviewing documentation for misalignment with the codebase |
 | `routing`                      | Routing user requests to the right skill                   |
 
 ### `skills/`
 
 Each skill lives in its own directory: `.agents/skills/<skill-name>/SKILL.md`.
 
-A `SKILL.md` must contain:
+The routing agent reads all `SKILL.md` files automatically to discover available agents. Do not register agents manually
+anywhere else.
 
-- `## Metadata` — YAML block with `triggers` list
-- `## Persona` — the agent's instructions, loaded at runtime. This is the single source of truth for what the agent does and how it behaves.
-- `## Input / Output` — description of what the skill receives and produces
-
-The routing agent reads all `SKILL.md` files automatically to discover available agents. Do not register agents manually anywhere else.
-
-To add a new skill: use the `create-skill` skill, or create `.agents/skills/<skill-name>/SKILL.md` directly with the sections above.
+To add a new skill: use the `create-skill` skill. It defines the required `SKILL.md` structure and output format.
 
 ## Adding or Changing Things
 

@@ -21,7 +21,7 @@ An AI SDLC prompt library frontend — a server-rendered Defra digital service t
 | Session cache       | Redis (via `@hapi/catbox-redis`) / in-memory for local dev               |
 | Package manager     | npm                                                                      |
 | Test runner         | Vitest                                                                   |
-| Agent orchestration | Mastra (`@mastra/core`) with TypeScript                                  |
+| Agent orchestration | Markdown skills in `.agents/skills/`                                     |
 
 **Infrastructure dependencies (via Docker Compose):**
 
@@ -89,7 +89,7 @@ Use only libraries from this list for each concern. Do not introduce alternative
 | HTTP calls (outbound) | Native `fetch` — no axios, node-fetch, or got                   |
 | CSS                   | SCSS via Webpack, `govuk-frontend` as base                      |
 | Testing               | `vitest`                                                        |
-| Agent orchestration   | `@mastra/core`                                                  |
+| Agent orchestration   | Markdown skills in `.agents/skills/`                            |
 
 If a library is not listed here, check whether an approved alternative covers the need before adding a new dependency.
 
@@ -108,16 +108,7 @@ Starts the frontend (port 3000), Redis, and LocalStack. The app hot-reloads via 
 To build and run just the app container:
 
 ```bash
-docker compose up your-frontend
-```
-
-### Run Mastra agents
-
-```bash
-cd .agents/mastra
-npm install
-npm run build       # compile TypeScript
-npm test            # run agent tests
+docker compose up ai-sdlc-prompt-library-frontend
 ```
 
 ---

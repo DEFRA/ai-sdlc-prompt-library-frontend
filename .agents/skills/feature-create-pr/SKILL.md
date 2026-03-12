@@ -34,53 +34,59 @@ You run git commands to create the branch, stage the right files, commit, and pu
 
 If `clearedToCommit` is false, stop immediately and tell the user there are Critical findings to resolve first.
 
+## Tools
+
+This skill uses the shared tools in `.agents/tools/`. Run each tool via bash.
+
+| Tool                                       | Purpose                                      |
+| ------------------------------------------ | -------------------------------------------- |
+| `create-branch.sh <feature-name>`          | Create and checkout `feature/<feature-name>` |
+| `fix.sh`                                   | Run formatting and linting in fix mode       |
+| `test.sh [path]`                           | Run the test suite (full or scoped)          |
+| `commit.sh "<message>" <file> [file ...]`  | Stage listed files and commit                |
+| `create-pr.sh "<title>" <path-to-body.md>` | Push the branch and open a PR                |
+
 ## Instructions
 
 ### Step 1: Read the work logs
 
 Read the following files:
 
-- The feature specification (`agent-logs/<feature-name>/feature-specification.md`)
-- The implementation plan (`agent-logs/<feature-name>/implementation-plan.md`)
+- `agent-logs/<feature-name>/feature-specification.md`
+- `agent-logs/<feature-name>/implementation-plan.md`
 - `agent-logs/<feature-name>/code-review.md` (for test coverage summary)
 - `agent-logs/<feature-name>/docs-update.md` (for any config/environment changes noted)
 
 ### Step 2: Create the branch
 
-Run:
-
 ```bash
-git checkout -b feature/<feature-name>
+.agents/tools/create-branch.sh <feature-name>
 ```
 
-### Step 3: Stage files
+### Step 3: Fix and test
 
-Stage the implemented source files and the full agent-logs directory for this feature:
+Run formatting, linting, and the test suite before committing.
 
 ```bash
-git add <each implemented file path>
-git add agent-logs/<feature-name>/
+.agents/tools/fix.sh
+.agents/tools/test.sh
 ```
 
-Do not run `git add .` or `git add -A`.
+If either step fails, resolve the issue before continuing.
 
 ### Step 4: Commit
 
-Write a commit message: one short imperative sentence describing what was built. No ticket numbers. No "feat:" prefix.
+Write a commit message: one short imperative sentence describing what was built. No ticket numbers. Do not include co-author trailers, AI attribution, or any mention of AI tooling.
+
+Pass every implemented source file and the full `agent-logs/<feature-name>/` directory as explicit arguments.
 
 ```bash
-git commit -m "<short commit message>"
+.agents/tools/commit.sh "<short commit message>" <each implemented file> agent-logs/<feature-name>/
 ```
 
-### Step 5: Push
+### Step 5: Draft the PR body
 
-```bash
-git push -u origin feature/<feature-name>
-```
-
-### Step 6: Draft the PR body
-
-Write the PR body using the structure below. Read the work logs to fill it in — do not invent content.
+Write the PR body to a temporary markdown file (e.g. `agent-logs/<feature-name>/pr-body.md`). Read the work logs to fill it in — do not invent content.
 
 **Title:** One short sentence, present tense, ≤ 70 characters. Describes what the feature does, not how it was built.
 
@@ -92,12 +98,12 @@ Write the PR body using the structure below. Read the work logs to fill it in �
 
 **Manual testing steps:** A numbered list. Step one is always how to start the app. Steps after that navigate to the feature and describe what to check. Keep it to what a reviewer actually needs — not an exhaustive test script.
 
-### Step 7: Create the PR
+**Do not include any mention of AI, AI-generated code, AI assistance, or similar.** The PR body describes the feature and its changes. It does not describe how the work was done or what tools were used. Remove phrases like "generated with Claude", "created with AI", "AI-assisted", "co-authored by Claude", or any equivalent. Code is code.
+
+### Step 6: Create the PR
 
 ```bash
-gh pr create \
-  --title "<title>" \
-  --body "<body>"
+.agents/tools/create-pr.sh "<title>" agent-logs/<feature-name>/pr-body.md
 ```
 
 Return the PR URL.
