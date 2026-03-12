@@ -8,7 +8,7 @@
 
 ## 1. Foundation: GOV.UK Frontend
 
-All pages must include `govuk-frontend` CSS. Use the rebranded template class:
+All pages must include `govuk-frontend` CSS. Use the rebranded template:
 
 ```html
 <html class="govuk-template govuk-template--rebranded"></html>
@@ -16,7 +16,11 @@ All pages must include `govuk-frontend` CSS. Use the rebranded template class:
 
 ### Font
 
-Use `Helvetica, Arial, sans-serif` only. Do not use GDS Transport. Apply to `body` and inherit everywhere.
+```css
+font-family: Helvetica, Arial, sans-serif;
+```
+
+This is the only font stack. Do not use GDS Transport. Apply to `body` and inherit everywhere.
 
 ---
 
@@ -26,17 +30,30 @@ Use GOV.UK colour classes wherever possible. The following are Defra-specific ov
 
 ### Defra Brand Colours
 
-| Variable             | Hex       | Usage                                                                         |
-| -------------------- | --------- | ----------------------------------------------------------------------------- |
-| `$defra-green`       | `#008531` | Nav, hero, footer border, version label, tile hover border, active indicators |
-| `$defra-green-light` | `#00a33b` | Header service name, logo                                                     |
-| `$defra-green-dark`  | `#006a27` | Button hover                                                                  |
-
-Defra colour variables are defined in `src/client/stylesheets/variables/_colours.scss`.
+| Hex       | Name              | Usage                                                                         |
+| --------- | ----------------- | ----------------------------------------------------------------------------- |
+| `#008531` | Defra Green       | Nav, hero, footer border, version label, tile hover border, active indicators |
+| `#00a33b` | Defra Green Light | Header service name, logo                                                     |
+| `#006a27` | Defra Green Dark  | Button hover                                                                  |
 
 ### GOV.UK Colours (use as-is, do not redefine)
 
 Refer to https://design-system.service.gov.uk/styles/colour/
+
+| GOV.UK Name                  | Hex       | Role                    |
+| ---------------------------- | --------- | ----------------------- |
+| `govuk-colour("blue")`       | `#1d70b8` | Links, tile links       |
+| `govuk-colour("dark-blue")`  | `#003078` | Link hover              |
+| `govuk-colour("black")`      | `#0b0c0c` | Body text, borders      |
+| `govuk-colour("dark-grey")`  | `#505a5f` | Secondary text          |
+| `govuk-colour("mid-grey")`   | `#b1b4b6` | Borders                 |
+| `govuk-colour("light-grey")` | `#f3f2f1` | Backgrounds             |
+| `govuk-colour("white")`      | `#ffffff` | Page body, tile default |
+| `govuk-colour("yellow")`     | `#fd0`    | Focus states            |
+| `govuk-colour("red")`        | `#d4351c` | Errors                  |
+| `govuk-colour("green")`      | `#00703c` | Success, GOV.UK buttons |
+
+Page background for rebranded template: `#f4f8fb`.
 
 ---
 
@@ -53,6 +70,8 @@ Use GOV.UK heading and body classes directly. Do not define custom font sizes.
 **Lists:** `govuk-list`, `govuk-list--bullet`, `govuk-list--number`
 
 **Links:** Use default `govuk-link` behaviour. See https://design-system.service.gov.uk/styles/links/
+
+**Font overrides:** `govuk-!-font-weight-bold`, `govuk-!-font-weight-regular`, `govuk-!-font-size-{size}`
 
 ---
 
@@ -104,61 +123,292 @@ Use these directly from `govuk-frontend`. Do not restyle them.
 
 ## 7. Defra Custom Components
 
-All custom components use the `defra-` prefix. Never use `app-` or unprefixed class names for new Defra components.
-
-Each component has its own SCSS file in `src/client/stylesheets/components/`. All files are imported via `src/client/stylesheets/components/_index.scss`.
-
-### Where to add CSS
-
-| File                                        | Component                 |
-| ------------------------------------------- | ------------------------- |
-| `components/_defra-header.scss`             | 7.1 Header                |
-| `components/_defra-service-navigation.scss` | 7.2 Service Navigation    |
-| `components/_defra-hero.scss`               | 7.3 Hero Banner           |
-| `components/_defra-version-banner.scss`     | 7.4 Version Banner        |
-| `components/_defra-tile.scss`               | 7.5 Tiles                 |
-| `components/_defra-section.scss`            | 7.6 Sections              |
-| `components/_defra-footer.scss`             | 7.8 Footer                |
-| `components/_defra-breadcrumbs.scss`        | 7.9 Breadcrumbs (Inverse) |
-| `components/_defra-subnav.scss`             | 7.10 Side Navigation      |
+These use the `defra-` prefix and extend beyond GOV.UK Frontend.
 
 ### 7.1 Header
 
-`defra-header` — white background, CSS grid layout. Replaces `govuk-header`. Includes `defra-header__logo` (60px height) and `defra-header__service-name` (Defra green, 22px, 700 weight). Focus uses the standard GOV.UK yellow focus pattern.
+```css
+.defra-header {
+  background-color: #ffffff;
+}
 
-**Mobile (≤768px):** Logo shrinks to 45px, service name to 18px.
+.defra-header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 15px;
+  align-items: center;
+}
+
+.defra-header__logo {
+  height: 60px;
+  width: auto;
+}
+
+.defra-header__service-name {
+  color: #00a33b;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.defra-header__service-name:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.15em;
+}
+```
+
+Focus uses the standard GOV.UK yellow focus pattern.
+
+**Mobile (≤768px):** Logo `45px`, service name `18px`.
 
 ### 7.2 Service Navigation
 
-`defra-service-navigation` — Defra green background bar below the header. Contains `defra-service-navigation__list` (flex row of links). Active page uses `aria-current="page"` which triggers bold weight and white underline. Focus uses the GOV.UK yellow pattern.
+```css
+.defra-service-navigation {
+  background-color: #008531;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.defra-service-navigation__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.defra-service-navigation__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.defra-service-navigation__link {
+  display: block;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+}
+
+.defra-service-navigation__link:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 0 #eefdf4;
+}
+
+.defra-service-navigation__link:focus {
+  background-color: #fd0;
+  color: #0b0c0c;
+  outline: 3px solid #fd0;
+}
+
+.defra-service-navigation__link[aria-current='page'] {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 0 #ffffff;
+  font-weight: 700;
+}
+```
+
+Mobile (≤768px): Collapses to toggle button `.defra-service-navigation__toggle`.
 
 ### 7.3 Hero Banner
 
-`defra-hero` — full-width Defra green banner. Uses `govuk-heading-xl` and `govuk-body-l` inside — text colour forced to white. Uses `govuk-grid-row` internally for two-thirds / one-third layout. `defra-hero__whats-new` is a bordered aside panel inside the hero.
+```css
+.defra-hero {
+  background-color: #008531;
+  color: #ffffff;
+  padding: 40px 15px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+```
+
+Uses `govuk-heading-xl` and `govuk-body-l` inside — force colour to `#ffffff`.
+Layout: `govuk-grid-row` with `govuk-grid-column-two-thirds` + `govuk-grid-column-one-third`.
+
+```css
+.defra-hero__whats-new {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 16px 20px;
+  color: #ffffff;
+  background-color: transparent;
+}
+```
 
 ### 7.4 Version Banner
 
-`defra-version-banner` — grey bordered strip. Contains `defra-version-banner__label` (green pill with version number) and `defra-version-banner__text`. Links inside use standard `govuk-link` styling.
+```css
+.defra-version-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+  padding: 15px 20px;
+  margin: 20px -15px 32px;
+}
 
-### 7.5 Tiles
+.defra-version-banner__label {
+  background-color: #008531;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 4px 10px;
+}
 
-`defra-tile` — white bordered card with minimum height of 140px. Used in `govuk-grid-row` with `govuk-grid-column-one-third` columns. The `defra-tile__link::after` pseudo-element makes the entire card clickable. On hover, the tile lifts 1px and gains a Defra green border. Focus is handled by the parent tile, not the link directly. Visited links stay blue (`#1d70b8`), never purple.
+.defra-version-banner__text {
+  color: #0b0c0c;
+  font-size: 16px;
+  line-height: 1.5;
+}
+```
+
+Links inside use standard `govuk-link` styling.
+
+### 7.5 Tiles — CRITICAL
+
+Displayed in `govuk-grid-row`, each tile in `govuk-grid-column-one-third`.
+
+```css
+.defra-tile-grid {
+  list-style: none;
+  margin: 16px -30px 24px;
+  padding: 0;
+}
+
+.defra-tile {
+  background-color: #ffffff;
+  border: 1px solid #b1b4b6;
+  display: block;
+  min-height: 140px;
+  padding: 18px 18px 22px;
+  position: relative;
+  transform: translateY(0);
+  transition:
+    border-color 0.1s ease-out,
+    box-shadow 0.1s ease-out,
+    background-color 0.1s ease-out,
+    transform 0.1s ease-out;
+}
+
+.defra-tile:hover {
+  background-color: #f3f2f1;
+  border-color: #008531;
+  box-shadow: 0 2px 0 #0b0c0c;
+  transform: translateY(-1px);
+}
+
+.defra-tile:has(.defra-tile__link:focus-visible) {
+  background-color: #ffffff;
+  border-color: #0b0c0c;
+  box-shadow: 0 0 0 1px #0b0c0c;
+  outline: 3px solid #fd0;
+  outline-offset: 0;
+}
+
+.defra-tile__title {
+  /* uses govuk-heading-m */
+  margin-bottom: 8px;
+}
+
+.defra-tile__link {
+  color: #1d70b8;
+  text-decoration: underline;
+}
+
+.defra-tile__link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.defra-tile__link:visited {
+  color: #1d70b8; /* stays blue, never purple */
+}
+
+.defra-tile__link:focus,
+.defra-tile__link:focus-visible {
+  outline: none; /* focus handled by parent tile */
+}
+
+.defra-tile__body {
+  /* uses govuk-body-s */
+  margin-bottom: 0;
+}
+```
 
 ### 7.6 Sections
 
-`defra-section` — adds top margin between page sections. Use `govuk-section-break govuk-section-break--visible govuk-section-break--l` between sections as a separator rule.
+```css
+.defra-section {
+  margin-top: 40px;
+}
 
-### 7.8 Footer
+.defra-section:first-of-type {
+  margin-top: 0;
+}
+```
 
-`defra-footer` — light grey background with a 10px Defra green top border. Replaces `govuk-footer`. Links use `defra-footer__link` (black, standard GOV.UK focus ring).
+Use `govuk-section-break govuk-section-break--visible govuk-section-break--l` between sections.
 
-### 7.9 Breadcrumbs (Inverse)
+### 7.7 Footer
 
-`defra-breadcrumbs--inverse` — modifier class applied to `govuk-breadcrumbs` for use on dark backgrounds (e.g. inside the hero). Forces link colour to white, restores GOV.UK yellow on focus.
+```css
+.defra-footer {
+  background-color: #f3f2f1;
+  border-top: 10px solid #008531;
+  padding: 25px 0;
+}
+```
 
-### 7.10 Side Navigation
+Uses `govuk-width-container` inside. Links styled as `defra-footer__link` with `color: #0b0c0c`. Standard GOV.UK focus ring.
 
-`defra-subnav__link` — standard link style for subnav items. `defra-subnav__link--current` — active state with Defra green left border, grey background, bold weight.
+### 7.8 Breadcrumbs (Inverse)
+
+Uses `govuk-breadcrumbs` as base, with Defra modifier for dark backgrounds:
+
+```css
+.defra-breadcrumbs--inverse .govuk-breadcrumbs__link {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.defra-breadcrumbs--inverse .govuk-breadcrumbs__link:focus {
+  background-color: #fd0 !important;
+  color: #0b0c0c !important;
+}
+```
+
+### 7.9 Side Navigation
+
+```css
+.app-subnav__link--current {
+  background-color: #f3f2f1;
+  border-left: 4px solid #008531;
+  display: block;
+  padding: 8px 10px;
+  margin-left: -14px;
+  text-decoration: none;
+  color: #0b0c0c;
+}
+```
+
+All other subnav links use standard `govuk-link` colours and focus states.
 
 ---
 
@@ -166,12 +416,14 @@ Each component has its own SCSS file in `src/client/stylesheets/components/`. Al
 
 Follow the GOV.UK focus state pattern everywhere. See https://design-system.service.gov.uk/get-started/focus-states/
 
-```
-background-color: #fd0
-box-shadow: 0 -2px #fd0, 0 4px #0b0c0c
-outline: 3px solid transparent
-color: #0b0c0c
-text-decoration: none
+```css
+background-color: #fd0;
+box-shadow:
+  0 -2px #fd0,
+  0 4px #0b0c0c;
+outline: 3px solid transparent;
+color: #0b0c0c;
+text-decoration: none;
 ```
 
 Do not modify this pattern.
@@ -188,7 +440,7 @@ Use GOV.UK Frontend breakpoints:
 | Tablet  | `40.0625rem` (641px) |
 | Desktop | `48.0625rem` (769px) |
 
-Additional Defra breakpoints: `768px` (nav collapse), `480px` (small mobile).
+Additional Defra breakpoints: `768px` (nav collapse), `480px` (small mobile), `1020px` (container centres).
 
 ---
 
