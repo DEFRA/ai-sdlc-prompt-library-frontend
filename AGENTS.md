@@ -59,6 +59,7 @@ To add a new rule: use the `create-rule` skill, or create/edit a file directly i
 | `feature-create-pr`            | Branching, committing, pushing, and opening a pull request |
 | `review-docs`                  | Reviewing documentation for misalignment with the codebase |
 | `routing`                      | Routing user requests to the right skill                   |
+| `spike`                        | Exploratory research and prototyping                       |
 
 ### `skills/`
 

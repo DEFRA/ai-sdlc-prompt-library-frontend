@@ -130,11 +130,12 @@ These use the `defra-` prefix and extend beyond GOV.UK Frontend.
 ```css
 .defra-header {
   background-color: #ffffff;
+  border-bottom: 1px solid #b1b4b6;
 }
 
 .defra-header__inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   gap: 24px;
   max-width: 960px;
   margin: 0 auto;
@@ -155,12 +156,19 @@ These use the `defra-` prefix and extend beyond GOV.UK Frontend.
   line-height: 1.2;
 }
 
+.defra-header__service-name:link,
+.defra-header__service-name:visited {
+  color: #00a33b;
+}
+
 .defra-header__service-name:hover {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 0.15em;
 }
 ```
+
+Service name colour must stay `#00a33b` in all states (`:link`, `:visited`).
 
 Focus uses the standard GOV.UK yellow focus pattern.
 
@@ -171,8 +179,7 @@ Focus uses the standard GOV.UK yellow focus pattern.
 ```css
 .defra-service-navigation {
   background-color: #008531;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid #b1b4b6;
 }
 
 .defra-service-navigation__inner {
@@ -195,9 +202,14 @@ Focus uses the standard GOV.UK yellow focus pattern.
   padding: 12px 16px;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   text-decoration: none;
   border-bottom: 4px solid transparent;
+}
+
+.defra-service-navigation__link:link,
+.defra-service-navigation__link:visited {
+  color: #ffffff;
 }
 
 .defra-service-navigation__link:hover {
@@ -217,6 +229,8 @@ Focus uses the standard GOV.UK yellow focus pattern.
   font-weight: 700;
 }
 ```
+
+Nav links must stay white in all states (`:link`, `:visited`) — the browser's visited purple is invisible on the green background.
 
 Mobile (≤768px): Collapses to toggle button `.defra-service-navigation__toggle`.
 
@@ -279,19 +293,30 @@ Links inside use standard `govuk-link` styling.
 
 ### 7.5 Tiles — CRITICAL
 
-Displayed in `govuk-grid-row`, each tile in `govuk-grid-column-one-third`.
+Displayed in a CSS Grid with equal-height rows. Do not use `govuk-grid-row` / `govuk-grid-column-*` — the grid handles layout.
 
 ```css
 .defra-tile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 16px;
   list-style: none;
-  margin: 16px -30px 24px;
+  margin: 16px 0 24px;
   padding: 0;
+}
+
+.defra-tile-grid > li {
+  display: flex;
 }
 
 .defra-tile {
   background-color: #ffffff;
   border: 1px solid #b1b4b6;
-  display: block;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   min-height: 140px;
   padding: 18px 18px 22px;
   position: relative;
@@ -320,6 +345,7 @@ Displayed in `govuk-grid-row`, each tile in `govuk-grid-column-one-third`.
 
 .defra-tile__title {
   /* uses govuk-heading-m */
+  margin-top: 12px;
   margin-bottom: 8px;
 }
 
@@ -409,6 +435,57 @@ Uses `govuk-breadcrumbs` as base, with Defra modifier for dark backgrounds:
 ```
 
 All other subnav links use standard `govuk-link` colours and focus states.
+
+### 7.10 Prompt Block
+
+Copyable code block with placeholder highlighting. Used on gallery detail pages.
+
+```css
+.defra-prompt-block {
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+  padding: 16px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.defra-prompt-block pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.defra-prompt-block code {
+  font-family: monospace;
+}
+
+.defra-prompt-block__copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.defra-prompt-block__copy--success {
+  background-color: #008531;
+  border-color: #008531;
+  color: #ffffff;
+}
+
+.defra-prompt-block__copy--error {
+  background-color: #d4351c;
+  border-color: #d4351c;
+  color: #ffffff;
+}
+
+.defra-placeholder {
+  background-color: #ffdd00;
+  padding: 0 2px;
+}
+```
+
+The `defra-prompt-block__status` element is visually hidden (`clip-path: inset(50%)`) with `aria-live` for screen reader copy announcements.
 
 ---
 

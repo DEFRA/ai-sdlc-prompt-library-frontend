@@ -2,6 +2,7 @@ import inert from '@hapi/inert'
 
 import { home } from './features/home/index.js'
 import { health } from './features/health/index.js'
+import { galleryDetail } from './features/gallery-detail/index.js'
 import { serveStaticFiles } from './common/helpers/serve-static-files.js'
 
 export const router = {
@@ -15,6 +16,7 @@ export const router = {
 
       // Application routes
       await server.register([home])
+      await server.register([galleryDetail])
 
       // Static assets
       await server.register([serveStaticFiles])

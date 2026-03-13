@@ -1,0 +1,30 @@
+<h1 class="govuk-heading-l">{{ entry.title }}</h1>
+
+<h2 class="govuk-heading-m">What this workflow achieves</h2>
+<p class="govuk-body">{{ entry.whatThisWorkflowAchieves }}</p>
+
+<h2 class="govuk-heading-m">Why this workflow matters</h2>
+<p class="govuk-body">{{ entry.whyThisWorkflowMatters }}</p>
+
+<h2 class="govuk-heading-m">What you&#39;ll need</h2>
+<ul class="govuk-list govuk-list--bullet">
+  {% for item in entry.whatYoullNeed %}
+    <li>{{ item }}</li>
+  {% endfor %}
+</ul>
+
+<ol class="govuk-list">
+  {% for step in entry.steps %}
+    <li>
+      <h3 class="govuk-heading-m">Step {{ step.number }}: {{ step.title }}</h3>
+      <p class="govuk-body">{{ step.context }}</p>
+
+      {% set promptText = step.promptText %}
+      {% include "features/gallery-detail/_prompt-block.njk" %}
+
+      <div class="govuk-inset-text">
+        {{ step.whatToDoWithOutput }}
+      </div>
+    </li>
+  {% endfor %}
+</ol>

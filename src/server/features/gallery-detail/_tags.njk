@@ -1,0 +1,12 @@
+{% for group in tagGroups %}
+  <div class="govuk-!-margin-bottom-4">
+    <h3 class="govuk-heading-s">{{ group.label }}</h3>
+    <ul class="govuk-list govuk-list--inline" aria-label="{{ group.label }} tags">
+      {% for tag in group.tags %}
+        <li>
+          <strong class="govuk-tag govuk-tag--grey">{{ tag }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}

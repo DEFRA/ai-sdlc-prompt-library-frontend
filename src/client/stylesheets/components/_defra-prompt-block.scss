@@ -1,0 +1,58 @@
+@use 'variables/colours' as *;
+
+.defra-prompt-block {
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+  padding: 16px;
+  position: relative;
+  margin-bottom: 24px;
+
+  pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: monospace;
+  }
+}
+
+.defra-prompt-block__copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.defra-prompt-block__copy--success {
+  background-color: $defra-green;
+  border-color: $defra-green;
+  color: #ffffff;
+
+  &:hover {
+    background-color: $defra-green-dark;
+  }
+}
+
+.defra-prompt-block__copy--error {
+  background-color: #d4351c;
+  border-color: #d4351c;
+  color: #ffffff;
+}
+
+.defra-prompt-block__status {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.defra-placeholder {
+  background-color: #ffdd00;
+  padding: 0 2px;
+}

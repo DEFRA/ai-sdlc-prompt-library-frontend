@@ -1,0 +1,12 @@
+{% set blockPromptText = promptText if promptText else entry.promptText %}
+
+<div class="defra-prompt-block" role="region" aria-label="Prompt text">
+  <button class="govuk-button govuk-button--secondary defra-prompt-block__copy"
+          data-copy-target
+          aria-label="Copy prompt to clipboard"
+          hidden>
+    Copy
+  </button>
+  <pre><code>{{ blockPromptText | highlightPlaceholders | safe }}</code></pre>
+  <span class="defra-prompt-block__status" aria-live="polite"></span>
+</div>

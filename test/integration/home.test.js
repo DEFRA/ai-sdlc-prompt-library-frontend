@@ -13,7 +13,7 @@ describe('#homeController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('GET / returns homepage with prompt library title and three cards', async () => {
+  test('GET / returns gallery introduction and entry cards with type badges', async () => {
     const { result, statusCode } = await server.inject({
       method: 'GET',
       url: '/'
@@ -21,8 +21,11 @@ describe('#homeController', () => {
 
     expect(statusCode).toBe(statusCodes.ok)
     expect(result).toContain('Defra AI Prompt Library')
-    expect(result).toContain('Prompt one')
-    expect(result).toContain('Prompt two')
-    expect(result).toContain('Prompt three')
+    expect(result).toContain('User Story Generator')
+    expect(result).toContain('Sprint Planning Pipeline')
+    expect(result).toContain('Defra AI Coding Standards')
+    expect(result).toContain('Prompt')
+    expect(result).toContain('Workflow')
+    expect(result).toContain('Agent Config')
   })
 })
