@@ -21,12 +21,17 @@
 }
 
 .defra-header__service-name {
-  color: $defra-green-light;
+  color: #00a33b;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 22px;
   font-weight: 700;
   text-decoration: none;
   line-height: 1.2;
+
+  &:link,
+  &:visited {
+    color: #00a33b;
+  }
 
   &:hover {
     text-decoration: underline;

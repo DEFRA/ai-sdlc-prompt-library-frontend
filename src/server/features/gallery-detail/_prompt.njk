@@ -1,0 +1,21 @@
+<h1 class="govuk-heading-l">{{ entry.title }}</h1>
+
+<h2 class="govuk-heading-m">What this prompt does</h2>
+<p class="govuk-body">{{ entry.whatThisPromptDoes }}</p>
+
+<h2 class="govuk-heading-m">Why this prompt works</h2>
+<p class="govuk-body">{{ entry.whyThisPromptWorks }}</p>
+
+<h2 class="govuk-heading-m">How to use the result</h2>
+<p class="govuk-body">{{ entry.howToUseTheResult }}</p>
+
+{% include "features/gallery-detail/_prompt-block.njk" %}
+
+{% if entry.beforeYouStart %}
+  <h2 class="govuk-heading-m">Before you start</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for item in entry.beforeYouStart %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

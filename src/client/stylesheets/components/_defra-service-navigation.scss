@@ -2,8 +2,7 @@
 
 .defra-service-navigation {
   background-color: $defra-green;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid #b1b4b6;
 }
 
 .defra-service-navigation__inner {
@@ -27,9 +26,14 @@
   color: #ffffff;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   text-decoration: none;
   border-bottom: 4px solid transparent;
+
+  &:link,
+  &:visited {
+    color: #ffffff;
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);

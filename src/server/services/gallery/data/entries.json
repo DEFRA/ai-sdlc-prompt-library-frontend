@@ -1,0 +1,69 @@
+[
+  {
+    "id": "defra-ai-coding-standards",
+    "type": "agent-config",
+    "title": "Defra AI Coding Standards",
+    "summary": "Rules and skills for consistent AI-assisted development across Defra.",
+    "author": "Platform Team",
+    "published": "2026-02-15",
+    "experienceLevel": "Comfortable",
+    "repositoryUrl": "https://github.com/DEFRA/ai-coding-standards",
+    "whatThisIs": "A repository of rules, skills, and agent configurations for AI coding tools used across Defra projects. It covers everything from code style to PR review conventions.",
+    "whenToUseThis": "Use this when setting up a new Defra project with AI coding assistants. It gives your tools the same standards your team follows.",
+    "whatsInside": "12 rules files covering code style, testing patterns, and PR review conventions, plus 3 skills for automated refactoring.",
+    "contentTags": ["Rules", "Skills"],
+    "toolTags": ["Claude Code", "GitHub Copilot"]
+  },
+  {
+    "id": "user-story-generator",
+    "type": "prompt",
+    "title": "User Story Generator",
+    "summary": "Generates user stories from meeting transcripts.",
+    "author": "Jane Smith",
+    "published": "2026-03-01",
+    "experienceLevel": "Getting started",
+    "whatThisPromptDoes": "Give it a meeting transcript and it produces a set of user stories in standard format. Each story includes acceptance criteria and a clear definition of done.",
+    "whyThisPromptWorks": "It uses structured output formatting and chain-of-thought reasoning to break down free-form discussions into actionable stories. The key insight is asking the AI to identify the actors first before writing stories.",
+    "howToUseTheResult": "Review each story for accuracy against the original transcript, then import them into your backlog tool. They will need sizing by the team.",
+    "promptText": "You are a business analyst working on a government digital service.\n\nRead the following meeting transcript and produce user stories in standard format.\n\nFor each story include:\n- A title\n- As a [role], I want [feature], so that [benefit]\n- Acceptance criteria (Given/When/Then)\n- Definition of done\n\nTranscript:\n[DOCUMENT]\n\nTopic: [TOPIC]",
+    "useCaseTags": ["Writing", "Planning"],
+    "toolTags": ["Any AI assistant"],
+    "beforeYouStart": [
+      "Have the meeting transcript ready",
+      "Know who attended the meeting"
+    ]
+  },
+  {
+    "id": "sprint-planning-pipeline",
+    "type": "workflow",
+    "title": "Sprint Planning Pipeline",
+    "summary": "End-to-end sprint planning from backlog to task breakdown.",
+    "author": "Delivery Team",
+    "published": "2026-03-10",
+    "experienceLevel": "Advanced",
+    "whatThisWorkflowAchieves": "Takes a raw backlog and produces a fully planned sprint with sized stories and task breakdowns. You walk away with a sprint ready to start.",
+    "whyThisWorkflowMatters": "Breaking planning into steps lets you review and adjust at each stage rather than trusting a single massive prompt. Each checkpoint is a chance to catch mistakes before they compound.",
+    "whatYoullNeed": [
+      "Access to the product backlog",
+      "Sprint capacity numbers",
+      "Previous sprint velocity"
+    ],
+    "steps": [
+      {
+        "title": "Prioritise the backlog",
+        "context": "Start by getting the AI to rank stories by business value and dependencies. This gives you a starting order to work from.",
+        "promptText": "Review the following backlog items and rank them by business value, considering dependencies between items.\n\nFor each item explain your ranking rationale in one sentence.\n\n[BACKLOG_ITEMS]",
+        "whatToDoWithOutput": "Check the ranking makes sense and adjust any obvious misplacements before continuing."
+      },
+      {
+        "title": "Size the stories",
+        "context": "Now estimate each prioritised story using the team velocity as context.",
+        "promptText": "Given the following prioritised stories and a team velocity of [VELOCITY] points per sprint, estimate story points for each.\n\nUse the Fibonacci scale (1, 2, 3, 5, 8, 13). Explain your estimate briefly.\n\n[PRIORITISED_STORIES]",
+        "whatToDoWithOutput": "Validate estimates against your team knowledge and adjust where the AI has over or underestimated."
+      }
+    ],
+    "useCaseTags": ["Planning", "Analysis"],
+    "toolTags": ["Claude", "ChatGPT"],
+    "estimatedTime": "45 minutes"
+  }
+]

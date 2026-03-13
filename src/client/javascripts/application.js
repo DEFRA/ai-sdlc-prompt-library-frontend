@@ -8,6 +8,8 @@ import {
   SkipLink
 } from 'govuk-frontend'
 
+import './copy-to-clipboard.js'
+
 createAll(Button)
 createAll(Checkboxes)
 createAll(ErrorSummary)

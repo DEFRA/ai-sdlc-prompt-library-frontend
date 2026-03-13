@@ -1,0 +1,29 @@
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Author</dt>
+    <dd class="govuk-summary-list__value">{{ metadata.author }}</dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Published</dt>
+    <dd class="govuk-summary-list__value">{{ metadata.published }}</dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">AI experience level</dt>
+    <dd class="govuk-summary-list__value">
+      <strong class="govuk-tag
+        {% if metadata.experienceLevel === 'Getting started' %}govuk-tag--green
+        {% elif metadata.experienceLevel === 'Comfortable' %}govuk-tag--blue
+        {% elif metadata.experienceLevel === 'Advanced' %}govuk-tag--purple
+        {% endif %}"
+        aria-label="AI experience level: {{ metadata.experienceLevel }}">
+        {{ metadata.experienceLevel }}
+      </strong>
+    </dd>
+  </div>
+  {% if metadata.estimatedTime %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Estimated time</dt>
+      <dd class="govuk-summary-list__value">{{ metadata.estimatedTime }}</dd>
+    </div>
+  {% endif %}
+</dl>

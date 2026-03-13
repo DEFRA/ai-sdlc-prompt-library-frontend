@@ -88,6 +88,7 @@ Use only libraries from this list for each concern. Do not introduce alternative
 | Templating            | `nunjucks`                                                      |
 | HTTP calls (outbound) | Native `fetch` — no axios, node-fetch, or got                   |
 | CSS                   | SCSS via Webpack, `govuk-frontend` as base                      |
+| Date formatting       | `date-fns`                                                      |
 | Testing               | `vitest`                                                        |
 | Agent orchestration   | Markdown skills in `.agents/skills/`                            |
 

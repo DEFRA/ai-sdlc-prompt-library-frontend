@@ -1,21 +1,27 @@
-<section class="defra-section" aria-labelledby="prompts-heading">
-  <h2 class="govuk-heading-l" id="prompts-heading">Featured prompts</h2>
-  <ul class="govuk-grid-row defra-tile-grid">
-    {% for card in promptCards %}
-      <li class="govuk-grid-column-one-third">
-        <div class="defra-tile">
-          <h3 class="govuk-heading-m defra-tile__title">
-            {% if card.href %}
+<section class="defra-section" aria-label="Prompt gallery">
+  {% if galleryCards.length %}
+    <ul class="defra-tile-grid">
+      {% for card in galleryCards %}
+        <li>
+          <div class="defra-tile">
+            <strong class="govuk-tag
+              {% if card.typeBadge === 'Prompt' %}govuk-tag--blue
+              {% elif card.typeBadge === 'Workflow' %}govuk-tag--purple
+              {% elif card.typeBadge === 'Agent Config' %}govuk-tag--green
+              {% endif %}"
+              aria-label="Type: {{ card.typeBadge }}">
+              {{ card.typeBadge }}
+            </strong>
+            <h3 class="govuk-heading-m defra-tile__title">
               <a class="defra-tile__link" href="{{ card.href }}">{{ card.title }}</a>
-            {% else %}
-              {{ card.title }}
-            {% endif %}
-          </h3>
-          {% if card.body %}
-            <p class="govuk-body-s defra-tile__body">{{ card.body }}</p>
-          {% endif %}
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+            </h3>
+            <p class="govuk-body-s defra-tile__body">{{ card.summary }}</p>
+            <p class="govuk-body-s">{{ card.author }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="govuk-body">There are no entries yet. Check back soon.</p>
+  {% endif %}
 </section>

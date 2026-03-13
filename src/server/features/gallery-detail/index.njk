@@ -1,0 +1,36 @@
+{% extends "layouts/page.njk" %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "/" },
+      { text: pageTitle }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% if templateType === "agent-config" %}
+          {% include "features/gallery-detail/_agent-config.njk" %}
+        {% elif templateType === "prompt" %}
+          {% include "features/gallery-detail/_prompt.njk" %}
+        {% elif templateType === "workflow" %}
+          {% include "features/gallery-detail/_workflow.njk" %}
+        {% endif %}
+
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+        {% include "features/gallery-detail/_tags.njk" %}
+
+        {% include "features/gallery-detail/_metadata.njk" %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
