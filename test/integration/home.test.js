@@ -21,9 +21,9 @@ describe('#homeController', () => {
 
     expect(statusCode).toBe(statusCodes.ok)
     expect(result).toContain('Defra AI Prompt Library')
-    expect(result).toContain('User Story Generator')
-    expect(result).toContain('Sprint Planning Pipeline')
-    expect(result).toContain('Defra AI Coding Standards')
+    expect(result).toContain('Backlog Refinement from Transcript')
+    expect(result).toContain('AI Prototyping Workflow')
+    expect(result).toContain('IPAFFS Utils')
     expect(result).toContain('Prompt')
     expect(result).toContain('Workflow')
     expect(result).toContain('Agent Config')

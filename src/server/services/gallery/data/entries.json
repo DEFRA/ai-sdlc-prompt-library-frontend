@@ -1,78 +1,125 @@
 [
   {
-    "id": "defra-ai-coding-standards",
+    "id": "ipaffs-utils",
     "type": "agent-config",
-    "title": "Defra AI Coding Standards",
-    "summary": "Rules and skills for consistent AI-assisted development across Defra.",
-    "author": "Platform Team",
-    "published": "2026-02-15",
-    "experienceLevel": "Comfortable",
-    "repositoryUrl": "https://github.com/DEFRA/ai-coding-standards",
-    "designPhilosophy": "A shared, tool-agnostic set of coding standards that any AI assistant can follow. The goal is consistency across teams regardless of which AI tool they use — so every developer gets the same guardrails whether they prefer Claude Code, GitHub Copilot, or Cursor.",
+    "title": "IPAFFS Utils",
+    "summary": "A range of skills to cover all tasks in the software delivery life cycle.",
+    "author": "Sam Farrington",
+    "published": "2026-03-13",
+    "experienceLevel": "Advanced",
+    "repositoryUrl": "https://github.com/DEFRA/ipaffs-utils/tree/master/agents",
+    "designPhilosophy": "Built to automate the entire software delivery life cycle — from creating user stories on Confluence, through codebase analysis, feature implementation, code review, and deployment. The goal is production-ready code, not spikes or experiments. Agents take Jira tickets right the way through to completed, reviewed, and submitted work. The config is tightly integrated with Jira, Confluence, GitHub, and Jenkins via API token authentication, and is tailored specifically to the IPAFFS project. While the overall config is project-specific, individual skills and rules are broadly reusable.",
     "keyFeatures": [
-      "12 rules files covering code style, testing, and PR review",
-      "3 automated refactoring skills",
-      "Works with any AI coding assistant",
-      "Ready-made project configuration files"
+      "API token authentication for Jira, Confluence, GitHub, and Jenkins",
+      "14 persona-based skills covering reviews, ticket planning, implementation, refactoring, and npm upgrades",
+      "Shell-based tooling for Jira tickets, GitHub PRs, Confluence pages, and Jenkins builds",
+      "Structured workspaces that organise review artefacts, plans, and upgrade tracking per ticket",
+      "Best-practice guides for k6 performance testing, Playwright e2e testing, REST APIs, and GDS standards",
+      "Multi-phase npm upgrade orchestration with automated and manual upgrade paths"
     ],
     "whoThisIsFor": [
-      "Development teams using AI coding assistants",
-      "New Defra projects needing consistent standards",
-      "Teams working across multiple AI tools"
+      "Teams looking to automate end-to-end flows in production codebases",
+      "Developers working on large, complex projects integrated with Jira and Confluence",
+      "Anyone wanting to see how far agent-driven delivery can go across the full software life cycle"
     ],
     "contentTags": ["Rules", "Skills"],
-    "toolTags": ["Claude Code", "GitHub Copilot"]
+    "toolTags": ["Claude Code"]
   },
   {
-    "id": "user-story-generator",
-    "type": "prompt",
-    "title": "User Story Generator",
-    "summary": "Generates user stories from meeting transcripts.",
-    "author": "Jane Smith",
-    "published": "2026-03-01",
-    "experienceLevel": "Getting started",
-    "whatThisPromptDoes": "Give it a meeting transcript and it produces a set of user stories in standard format. Each story includes acceptance criteria and a clear definition of done.",
-    "whyThisPromptWorks": "It uses structured output formatting and chain-of-thought reasoning to break down free-form discussions into actionable stories. The key insight is asking the AI to identify the actors first before writing stories.",
-    "howToUseTheResult": "Review each story for accuracy against the original transcript, then import them into your backlog tool. They will need sizing by the team.",
-    "promptText": "You are a business analyst working on a government digital service.\n\nRead the following meeting transcript and produce user stories in standard format.\n\nFor each story include:\n- A title\n- As a [role], I want [feature], so that [benefit]\n- Acceptance criteria (Given/When/Then)\n- Definition of done\n\nTranscript:\n[DOCUMENT]\n\nTopic: [TOPIC]",
-    "useCaseTags": ["Writing", "Planning"],
-    "toolTags": ["Any AI assistant"],
-    "beforeYouStart": [
-      "Have the meeting transcript ready",
-      "Know who attended the meeting"
-    ]
+    "id": "prompt-library",
+    "type": "agent-config",
+    "title": "Prompt Library",
+    "summary": "Platform-agnostic coding standards, rules, and skills that work across any AI assistant.",
+    "author": "Andy Roberts",
+    "published": "2026-03-13",
+    "experienceLevel": "Comfortable",
+    "repositoryUrl": "https://github.com/DEFRA/ai-sdlc-prompt-library-frontend/",
+    "designPhilosophy": "Built for a team where everyone uses different AI tools — Cursor, Claude Code, GitHub Copilot. Rather than maintaining separate configs for each platform, all rules and skills live in a shared .agents directory. The platform-specific files (CLAUDE.md, .cursor/rules, .github/copilot-instructions.md) are thin wrappers that point back to .agents, so no definitions are duplicated or locked to a single tool. The focus is on production-quality code aligned to CDP standards, bringing consistency and opinionated best practice to a team's development regardless of which coding agent they use.",
+    "keyFeatures": [
+      "9 rules files covering code style, testing, naming, architecture, logging, and styling",
+      "13 skills spanning feature planning, implementation, code review, test review, styling review, PR creation, and documentation",
+      "Thin-wrapper pattern — Cursor, Copilot, and Claude configs all delegate to a single .agents directory",
+      "Shell-based tools for committing, branching, creating PRs, running tests, and applying fixes",
+      "Aligned to CDP (Core Delivery Platform) standards and conventions"
+    ],
+    "whoThisIsFor": [
+      "Teams on CDP where different developers use different AI coding assistants",
+      "Projects that want consistent, opinionated coding standards across all AI tools",
+      "Teams looking for a reusable template for platform-agnostic agent configuration"
+    ],
+    "contentTags": ["Rules", "Skills"],
+    "toolTags": ["Claude Code", "GitHub Copilot", "Cursor"]
   },
   {
-    "id": "sprint-planning-pipeline",
+    "id": "prototyping-workflow",
     "type": "workflow",
-    "title": "Sprint Planning Pipeline",
-    "summary": "End-to-end sprint planning from backlog to task breakdown.",
-    "author": "Delivery Team",
-    "published": "2026-03-10",
-    "experienceLevel": "Advanced",
-    "whatThisWorkflowAchieves": "Takes a raw backlog and produces a fully planned sprint with sized stories and task breakdowns. You walk away with a sprint ready to start.",
-    "whyThisWorkflowMatters": "Breaking planning into steps lets you review and adjust at each stage rather than trusting a single massive prompt. Each checkpoint is a chance to catch mistakes before they compound.",
+    "title": "AI Prototyping Workflow",
+    "summary": "Turn designs into GOV.UK prototypes using a three-agent pipeline — specification, planning, then code.",
+    "author": "NRF Team",
+    "published": "2026-03-13",
+    "experienceLevel": "Comfortable",
+    "whatThisWorkflowAchieves": "Takes a set of designs — Figma files, screenshots, or written screen descriptions — and turns them into a working GOV.UK prototype built on the Prototype Kit. You walk away with coded pages, routes, and validation that follow GDS patterns, ready to deploy on CDP.",
+    "whyThisWorkflowMatters": "Each agent has one specialist job. The specification agent fills in design gaps and makes assumptions explicit before any code is written. The implementation plan agent catches naming conflicts, broken back links, and pattern violations before they become bugs. By the time the coding agent runs, most of the thinking is done and the output is consistent, predictable code. Fixing a prompt at any stage benefits everyone who uses the workflow after you.",
     "whatYoullNeed": [
-      "Access to the product backlog",
-      "Sprint capacity numbers",
-      "Previous sprint velocity"
+      "A design document — Figma files, screenshots, or written screen descriptions",
+      "A GOV.UK Prototype Kit project to work in",
+      "An AI coding tool — Cursor, Claude Code, or GitHub Copilot",
+      "The agent prompts from the repository"
     ],
     "steps": [
       {
-        "title": "Prioritise the backlog",
-        "context": "Start by getting the AI to rank stories by business value and dependencies. This gives you a starting order to work from.",
-        "promptText": "Review the following backlog items and rank them by business value, considering dependencies between items.\n\nFor each item explain your ranking rationale in one sentence.\n\n[BACKLOG_ITEMS]",
-        "whatToDoWithOutput": "Check the ranking makes sense and adjust any obvious misplacements before continuing."
+        "title": "Gather your designs",
+        "context": "The workflow starts with whatever design artefacts you have. These can be Figma screens, annotated screenshots, a written description of the user journey, or user stories. The format does not matter — the specification agent can work with any of them.",
+        "promptText": "No prompt needed for this step. Collect your design artefacts and have them ready to share with the AI agent in the next step. If you have Figma files, you can use an MCP server to import them directly.",
+        "whatToDoWithOutput": "Make sure you can describe the complete user journey from start to finish. If there are branching paths or conditional screens, note them."
       },
       {
-        "title": "Size the stories",
-        "context": "Now estimate each prioritised story using the team velocity as context.",
-        "promptText": "Given the following prioritised stories and a team velocity of [VELOCITY] points per sprint, estimate story points for each.\n\nUse the Fibonacci scale (1, 2, 3, 5, 8, 13). Explain your estimate briefly.\n\n[PRIORITISED_STORIES]",
-        "whatToDoWithOutput": "Validate estimates against your team knowledge and adjust where the AI has over or underestimated."
+        "title": "Run the Journey Specification Agent",
+        "context": "This agent acts as a Senior GDS Product Owner. It reads your designs and produces a structured specification with a detailed template for every screen — covering path, title, branching logic, form fields, validation rules, error states, dynamic content, and data properties. It logs every assumption it makes in a Decision Log so nothing is hidden.",
+        "promptText": "Copy the full prompt from the repository at prompts/journey-specification-agent.md. Provide your design artefacts (images, text, or Figma exports) and ask the agent to produce a journey specification. The prompt is around 1,000 lines and contains the complete screen template structure the agent must follow.",
+        "whatToDoWithOutput": "Start with the Decision Log — check the assumptions the agent made. Then verify the screen order matches your intended journey. Review each screen template for correctness. Edit anything that does not match the design. This is the cheapest place to catch mistakes."
+      },
+      {
+        "title": "Run the Implementation Plan Agent",
+        "context": "This agent validates the specification against the existing codebase before any code is written. It checks 16 categories of issues including path naming (lowercase, hyphenated, specific), data property uniqueness, back link hardcoding, route conflicts, form validation alignment, and GOV.UK pattern compliance. It auto-fixes known issues like JavaScript back links, generic route names, and orphaned validation rules.",
+        "promptText": "Copy the full prompt from the repository at prompts/implementation-plan-agent.md. Give the agent the specification file from the previous step and access to your prototype codebase. It will produce a corrected specification and an implementation plan file (.plan.md) with a prioritised build order.",
+        "whatToDoWithOutput": "Review the summary of changes and the list of conflicts detected. Check the implementation plan and build order — adjust if you disagree with the sequencing. Any issues caught here save significant time in the coding step."
+      },
+      {
+        "title": "Run the Coding Agent",
+        "context": "This agent implements the specification. It reads the corrected specification and implementation plan, then writes routes, views, and supporting files following existing codebase patterns. It handles structural changes (new pages, deleted pages, reordering), content replacement, GOV.UK component usage, and styling rules like using govukPanel for confirmation pages and govuk-summary-list for structured data.",
+        "promptText": "Copy the full prompt from the repository at prompts/coding-agent.md. Give the agent the corrected specification, the implementation plan, and access to the codebase. It will create or update routes and views for the journey.",
+        "whatToDoWithOutput": "Review the generated code. Check that pages render correctly, validation works, branching logic follows the specification, and styling matches GOV.UK patterns. Run the prototype locally to walk through the journey end to end."
+      },
+      {
+        "title": "Deploy and contribute",
+        "context": "With the prototype working locally, deploy it to CDP so stakeholders can review it. If you discovered issues during the workflow, update the agent prompts — your fix benefits every team that uses the workflow after you.",
+        "promptText": "No prompt needed for this step. Deploy your prototype to CDP following your team's standard deployment process. Consider setting up a vanity URL for the test environment to make sharing easier.",
+        "whatToDoWithOutput": "Share the deployed prototype with your team and stakeholders for feedback. If you improved any of the agent prompts during the process, contribute them back to the repository."
       }
     ],
-    "useCaseTags": ["Planning", "Analysis"],
-    "toolTags": ["Claude", "ChatGPT"],
-    "estimatedTime": "45 minutes"
+    "useCaseTags": ["Prototyping", "Design"],
+    "toolTags": ["Claude Code", "GitHub Copilot", "Cursor"],
+    "estimatedTime": "1 to 2 hours"
+  },
+  {
+    "id": "backlog-refinement-transcript",
+    "type": "prompt",
+    "title": "Backlog Refinement from Transcript",
+    "summary": "Converts an audio transcript from a refinement call into delivery-ready user stories, tasks, and spikes.",
+    "author": "Richard Holloway",
+    "published": "2026-03-13",
+    "experienceLevel": "Getting started",
+    "whatThisPromptDoes": "Give it a transcript from a recorded refinement session and it produces delivery-ready backlog items — user stories, tasks, and spikes — each in a structured template. The idea is that you go into refinement with just sticky notes or bullet points, have an open free-flowing conversation, and let the prompt do the capturing. It solves the old problem of one person with a keyboard trying to enter details into Jira while the rest of the team discusses sophisticated contextual information that is hard to capture in real time.",
+    "whyThisPromptWorks": "The templated outputs are the key. Separating output into user stories, tasks, and spikes was critical because those three types of work have very different structures and levels of detail. The prompt also applies BA judgment — flagging items as not ready when value is unclear, calling out contradictions and missing decisions rather than silently resolving them, and preferring multiple small focused tickets over large ones. Best results come from more powerful models, especially with long transcripts from hour-long meetings.",
+    "howToUseTheResult": "Copy the stories into Jira or your backlog tool. The output is not intended to be perfect — it captures everything from the refinement but items will still need a little editing or a three amigos session before they are ready to be picked up. If the templates do not suit your team, adjust them in the prompt as a first step.",
+    "promptText": "## Role & Stance\n\nAct as a **Senior Business Analyst** responsible for producing **delivery-ready backlog items** from refinement discussions.\n\nYou operate with strong BA judgment, challenge ambiguity, and prioritise clarity, value, and executability over completeness.\n\n---\n\n## Input\n\nYou are given a **raw transcript** from a backlog refinement session.\n\nThe transcript may contain:\n\n- Incomplete thoughts\n- Contradictions\n- Side discussions\n- Implementation talk\n- Assumptions stated or unstated\n\nTreat it as **unstructured input**, not truth.\n\n---\n\n## Mission\n\nConvert the transcript into **clear, concise, delivery-ready backlog items** that can be picked up immediately by Engineering and QA **without any prior context**.\n\n---\n\n## Core Responsibilities\n\n1. **Analyse the full transcript**\n\n    - Read end-to-end before extracting stories\n    - Do not anchor on early statements\n2. **Identify all backlog items**\n\n    - Include explicit and implied work\n    - Prefer **multiple small, focused tickets** over large ones\n3. **Apply BA judgment**\n\n    - Separate signal from noise\n    - Decide what belongs in: Value, Description, Acceptance Criteria, Open Questions\n    - Do **not** invent or \"fix\" missing information\n4. **Scope & Readiness Control**\n\n    - If a story lacks clear value → flag it as Not Ready\n    - If a story is too open ended → flag it as Not Ready\n    - If requirements cannot fit cleanly into one story: call out the risk and recommend a split\n5. **Ambiguity Handling**\n\n    - Explicitly call out: Contradictions, Missing decisions, Unclear ownership or behaviour\n    - Capture these only in **Open Questions**\n    - Never silently resolve assumptions\n\n---\n\n## Backlog Item Type Decision Guide\n\nUse this framework to determine the appropriate template:\n\n- Use a **User Story** when the outcome is a deliverable change to the product, requirements are sufficiently understood to define acceptance criteria, and behaviour fits Given/When/Then format.\n- Use a **Task** when the outcome is a known deliverable that is not a product change, requirements are clear with well-bounded scope, and completion is binary.\n- Use a **Spike** when the outcome is knowledge, a decision, or a recommendation, requirements are too uncertain to define clear acceptance criteria, and work results in documentation, a proof of concept, or a recommendation.\n\n**Key Principles:**\n\n- If you can define \"done\" in terms of **product behaviour** → User Story\n- If you can define \"done\" in terms of a **concrete deliverable** (not a product change) → Task\n- If you cannot define \"done\" because the **path forward is unknown** → Spike\n\n---\n\n## Quality Bar (Non-Negotiable)\n\nA good backlog item:\n\n- Leads with **clear purpose or value**\n- Describes **what** is needed, not how it's built\n- Uses completion or acceptance criteria to **remove ambiguity**, not restate intent\n- Includes edge cases **only when they reduce risk**\n- Is written in **plain, professional English**\n- Is understandable in isolation\n- Never self-references (e.g., do not write \"This story changes…\" or \"This task adds…\")\n\nIf the value, outcome, or deliverable is unclear → **the item is not ready**.\n\n---\n\n## Constraints\n\n- **Maximum 250 words per item**\n- **Concise items preferred** — do not add extra detail unless it is useful\n- No meeting language, commentary, or narrative framing\n- No implementation detail unless essential to delivery\n\n---\n\n## Output Instructions\n\n- Return **only the backlog items**\n- Do **not** include analysis, transcript excerpts, or explanations\n- Use the exact templates below\n\n---\n\n## User Story Template\n\n```\n**[Story ID]: [≤ 8 words — outcome + context]**\n\n### Value\n\n**AS A** [specific persona or role]\n\n**I WANT** [a clear capability or change]\n\n**SO THAT** [the business or user value achieved]\n\n> Go straight to value. If value is unclear, the story is not ready.\n\n### Description\n\n[Plain-English explanation of what is changing and why. Assume no project context. Include only essential background, constraints, or assumptions.]\n\n### Acceptance Criteria\n\n**Happy Path**\n\n**Given** [precondition]\n\n**When** [action]\n\n**Then** [expected outcome]\n\n\n**Unhappy / Edge Paths** *(if applicable)*\n\n**Given** [precondition]\n\n**When** [action]\n\n**Then** [expected outcome]\n\n### Tech Notes *(only if required)*\n\n- [Interfaces, data considerations, dependencies]\n- [No solution design, performance, or security unless essential]\n\n### Open Questions\n\n- [List only unresolved items that block delivery or acceptance]\n- [Be concise, specific, and actionable]\n```\n\n---\n\n## Task Template\n\n```\n**[Task ID]: [≤ 8 words — deliverable + context]**\n\n### Deliverable\n\n[One sentence describing the concrete output of this task]\n\n### Description\n\n[Plain-English explanation of what needs to be done and why. Assume no project context. Include only essential background, constraints, or assumptions.]\n\n### Completion Criteria\n\n- [Criterion 1 — specific, verifiable condition that must be met]\n- [Criterion 2]\n- [Criterion 3]\n\n> List the concrete conditions that define \"done\". These are binary — met or not met.\n\n### Dependencies *(if applicable)*\n\n- [What must be in place before this task can start]\n- [Who needs to be involved or consulted]\n\n### Open Questions\n\n- [List only unresolved items that block starting or completing the task]\n- [Be concise, specific, and actionable]\n```\n\n---\n\n## Spike Template\n\n```\n**[Spike ID]: [≤ 8 words — investigation focus + context]**\n\n### Timebox\n\n[X days]\n\n### Description\n\n[Plain-English explanation of what is being investigated or explored. Assume no project context. Include only essential background, constraints, or assumptions.]\n\n### Why / Context\n\n- [What triggered the need for this spike]\n- [What uncertainty, risk, or knowledge gap exists]\n- [How will findings inform future work or decisions]\n\n### Questions to Answer *(optional)*\n\n- [Specific questions the spike aims to resolve]\n- [Keep focused — if there are too many, consider splitting the spike]\n\n### Deliverable Outcomes / Definition of Done\n\n- [Deliverable / Outcome 1]\n- [Deliverable / Outcome 2]\n- [Deliverable / Outcome 3]\n\n> Define what \"done\" looks like for this spike. Focus on outputs, not activities.\n> A spike is complete when the timebox expires **or** all questions are sufficiently answered — whichever comes first.\n\n### Open Questions\n\n- [List only unresolved items that block starting or completing the spike]\n- [Be concise, specific, and actionable]\n```\n\n---\n\n## Formatting Rules Summary\n\n1. **Value statement (User Stories):** Each segment (AS A / I WANT / SO THAT) must be on its own line with a blank line between them\n\n2. **Acceptance Criteria (User Stories):** Each segment (Given / When / Then) must be on its own line with a blank line between them\n\n3. **Completion Criteria (Tasks):** One criterion per bullet; each must be independently verifiable\n\n4. **Lists:** Use bullets only where appropriate; prefer prose for simple descriptions\n\n---\n\nTranscript:\n[TRANSCRIPT]",
+    "useCaseTags": ["Writing", "Planning"],
+    "toolTags": ["Any AI assistant"],
+    "beforeYouStart": [
+      "Record your refinement session and produce a transcript",
+      "Have good system knowledge of the work being refined",
+      "Use a powerful model with a large context window — long transcripts struggle on smaller models"
+    ]
   }
 ]
