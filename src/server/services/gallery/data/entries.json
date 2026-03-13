@@ -8,9 +8,18 @@
     "published": "2026-02-15",
     "experienceLevel": "Comfortable",
     "repositoryUrl": "https://github.com/DEFRA/ai-coding-standards",
-    "whatThisIs": "A repository of rules, skills, and agent configurations for AI coding tools used across Defra projects. It covers everything from code style to PR review conventions.",
-    "whenToUseThis": "Use this when setting up a new Defra project with AI coding assistants. It gives your tools the same standards your team follows.",
-    "whatsInside": "12 rules files covering code style, testing patterns, and PR review conventions, plus 3 skills for automated refactoring.",
+    "designPhilosophy": "A shared, tool-agnostic set of coding standards that any AI assistant can follow. The goal is consistency across teams regardless of which AI tool they use — so every developer gets the same guardrails whether they prefer Claude Code, GitHub Copilot, or Cursor.",
+    "keyFeatures": [
+      "12 rules files covering code style, testing, and PR review",
+      "3 automated refactoring skills",
+      "Works with any AI coding assistant",
+      "Ready-made project configuration files"
+    ],
+    "whoThisIsFor": [
+      "Development teams using AI coding assistants",
+      "New Defra projects needing consistent standards",
+      "Teams working across multiple AI tools"
+    ],
     "contentTags": ["Rules", "Skills"],
     "toolTags": ["Claude Code", "GitHub Copilot"]
   },

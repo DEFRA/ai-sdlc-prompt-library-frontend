@@ -7,6 +7,12 @@ import {
 import { galleryDetailViewModel } from '../../../../src/server/features/gallery-detail/view-model.js'
 
 const AGENT_CONFIG_ENTRY = buildAgentConfigEntry()
+const AGENT_CONFIG_EMPTY_FEATURES = buildAgentConfigEntry({
+  keyFeatures: []
+})
+const AGENT_CONFIG_EMPTY_SUITABILITY = buildAgentConfigEntry({
+  whoThisIsFor: []
+})
 const PROMPT_ENTRY = buildPromptEntry()
 const PROMPT_ENTRY_WITH_BEFORE_YOU_START = buildPromptEntry({
   beforeYouStart: ['Have the transcript ready', 'Know who attended']
@@ -34,13 +40,15 @@ const SINGLE_STEP_WORKFLOW = buildWorkflowEntry({
 
 describe('#galleryDetailViewModel', () => {
   describe('agent-config entries', () => {
-    test('returns page title, about sections, repository link, tags, and metadata', () => {
+    test('returns page title, design philosophy, key features, suitability, repository link, tags, and metadata', () => {
       const result = galleryDetailViewModel.get(AGENT_CONFIG_ENTRY)
 
       expect(result.pageTitle).toBe(AGENT_CONFIG_ENTRY.title)
-      expect(result.entry.whatThisIs).toBe(AGENT_CONFIG_ENTRY.whatThisIs)
-      expect(result.entry.whenToUseThis).toBe(AGENT_CONFIG_ENTRY.whenToUseThis)
-      expect(result.entry.whatsInside).toBe(AGENT_CONFIG_ENTRY.whatsInside)
+      expect(result.entry.designPhilosophy).toBe(
+        AGENT_CONFIG_ENTRY.designPhilosophy
+      )
+      expect(result.entry.keyFeatures).toEqual(AGENT_CONFIG_ENTRY.keyFeatures)
+      expect(result.entry.whoThisIsFor).toEqual(AGENT_CONFIG_ENTRY.whoThisIsFor)
       expect(result.entry.repositoryUrl).toBe(AGENT_CONFIG_ENTRY.repositoryUrl)
       expect(result.tagGroups).toEqual([
         { label: 'Content', tags: AGENT_CONFIG_ENTRY.contentTags },
@@ -51,6 +59,18 @@ describe('#galleryDetailViewModel', () => {
       expect(result.metadata.experienceLevel).toBe(
         AGENT_CONFIG_ENTRY.experienceLevel
       )
+    })
+
+    test('omits key features when array is empty', () => {
+      const result = galleryDetailViewModel.get(AGENT_CONFIG_EMPTY_FEATURES)
+
+      expect(result.entry.keyFeatures).toEqual([])
+    })
+
+    test('omits who-this-is-for when array is empty', () => {
+      const result = galleryDetailViewModel.get(AGENT_CONFIG_EMPTY_SUITABILITY)
+
+      expect(result.entry.whoThisIsFor).toEqual([])
     })
   })
 

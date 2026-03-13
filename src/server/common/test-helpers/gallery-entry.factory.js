@@ -8,12 +8,18 @@ export const buildAgentConfigEntry = (overrides = {}) => ({
   published: '2026-02-15',
   experienceLevel: 'Comfortable',
   repositoryUrl: 'https://github.com/DEFRA/ai-coding-standards',
-  whatThisIs:
-    'A repository of rules, skills, and agent configurations for AI coding tools used across Defra projects.',
-  whenToUseThis:
-    'Use this when setting up a new Defra project with AI coding assistants.',
-  whatsInside:
-    '12 rules files covering code style, testing patterns, and PR review conventions, plus 3 skills for automated refactoring.',
+  designPhilosophy:
+    'A shared, tool-agnostic set of coding standards that any AI assistant can follow. The goal is consistency across teams regardless of which AI tool they use.',
+  keyFeatures: [
+    '12 rules files covering code style, testing, and PR review',
+    '3 automated refactoring skills',
+    'Works with any AI coding assistant'
+  ],
+  whoThisIsFor: [
+    'Development teams using AI coding assistants',
+    'New Defra projects needing consistent standards',
+    'Teams working across multiple AI tools'
+  ],
   contentTags: ['Rules', 'Skills'],
   toolTags: ['Claude Code', 'GitHub Copilot'],
   ...overrides
