@@ -14,7 +14,7 @@ describe('#galleryDetailController', () => {
   })
 
   describe('agent-config entries', () => {
-    test('GET /gallery/{entryId} returns agent config page with about sections, repo link, tags, and metadata', async () => {
+    test('GET /gallery/{entryId} returns agent config page with design philosophy, key features, suitability, repo link, tags, and metadata', async () => {
       const { result, statusCode } = await server.inject({
         method: 'GET',
         url: '/gallery/defra-ai-coding-standards'
@@ -22,9 +22,12 @@ describe('#galleryDetailController', () => {
 
       expect(statusCode).toBe(statusCodes.ok)
       expect(result).toContain('Defra AI Coding Standards')
-      expect(result).toContain('What this is')
-      expect(result).toContain('When to use this')
-      expect(result).toContain('What&#39;s inside')
+      expect(result).toContain('Design philosophy')
+      expect(result).toContain('Key features')
+      expect(result).toContain('Who this is for')
+      expect(result).not.toContain('What this is')
+      expect(result).not.toContain('When to use this')
+      expect(result).not.toContain('What&#39;s inside')
       expect(result).toContain('https://github.com/DEFRA/ai-coding-standards')
       expect(result).toContain('Rules')
       expect(result).toContain('Claude Code')

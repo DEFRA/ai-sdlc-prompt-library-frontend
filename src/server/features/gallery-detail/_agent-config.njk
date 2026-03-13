@@ -1,13 +1,25 @@
 <h1 class="govuk-heading-l">{{ entry.title }}</h1>
 
-<h2 class="govuk-heading-m">What this is</h2>
-<p class="govuk-body">{{ entry.whatThisIs }}</p>
+<h2 class="govuk-heading-m">Design philosophy</h2>
+<p class="govuk-body">{{ entry.designPhilosophy }}</p>
 
-<h2 class="govuk-heading-m">When to use this</h2>
-<p class="govuk-body">{{ entry.whenToUseThis }}</p>
+{% if entry.keyFeatures.length %}
+  <h2 class="govuk-heading-m">Key features</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for feature in entry.keyFeatures %}
+      <li>{{ feature }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
-<h2 class="govuk-heading-m">What&#39;s inside</h2>
-<p class="govuk-body">{{ entry.whatsInside }}</p>
+{% if entry.whoThisIsFor.length %}
+  <h2 class="govuk-heading-m">Who this is for</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for item in entry.whoThisIsFor %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 <a href="{{ entry.repositoryUrl }}"
    class="govuk-button govuk-button--start"
