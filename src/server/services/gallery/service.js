@@ -2,12 +2,31 @@ import { readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const dataPath = join(
-  dirname(fileURLToPath(import.meta.url)),
-  'data',
-  'entries.json'
+const dataDir = join(dirname(fileURLToPath(import.meta.url)), 'data')
+const promptsDir = join(dataDir, 'prompts')
+
+function hydratePromptFiles(entries) {
+  return entries.map((entry) => {
+    if (!entry.steps) return entry
+
+    return {
+      ...entry,
+      steps: entry.steps.map((step) => {
+        if (!step.promptFile) return step
+
+        const { promptFile, ...rest } = step
+        return {
+          ...rest,
+          promptText: readFileSync(join(promptsDir, promptFile), 'utf8')
+        }
+      })
+    }
+  })
+}
+
+const entries = hydratePromptFiles(
+  JSON.parse(readFileSync(join(dataDir, 'entries.json'), 'utf8'))
 )
-const entries = JSON.parse(readFileSync(dataPath, 'utf8'))
 
 function getEntries() {
   return entries

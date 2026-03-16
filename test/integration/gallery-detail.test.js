@@ -13,8 +13,8 @@ describe('#galleryDetailController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  describe('agent-config entries', () => {
-    test('GET /gallery/{entryId} returns agent config page with design philosophy, key features, suitability, repo link, tags, and metadata', async () => {
+  describe('repository entries', () => {
+    test('GET /gallery/{entryId} returns repository page with design philosophy, key features, suitability, repo link, tags, and metadata', async () => {
       const { result, statusCode } = await server.inject({
         method: 'GET',
         url: '/gallery/ipaffs-utils'
@@ -119,12 +119,14 @@ describe('#galleryDetailController', () => {
       expect(statusCode).toBe(statusCodes.ok)
       expect(result).toContain('AI Prototyping Workflow')
       expect(result).toContain('What this workflow achieves')
-      expect(result).toContain('Why this workflow matters')
+      expect(result).toContain('Why this works for us')
       expect(result).toContain('What you&#39;ll need')
       expect(result).toContain('Step 1')
       expect(result).toContain('Gather your designs')
       expect(result).toContain('Step 2')
       expect(result).toContain('Run the Journey Specification Agent')
+      expect(result).toContain('govuk-details')
+      expect(result).toContain('View prompt')
       expect(result).toContain('defra-prompt-block')
       expect(result).toContain('Prototyping')
       expect(result).toContain('Claude Code')

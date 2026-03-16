@@ -1,15 +1,15 @@
 import { vi } from 'vitest'
 
 import {
-  buildAgentConfigEntry,
+  buildRepositoryEntry,
   buildPromptEntry,
   buildWorkflowEntry
 } from '../../../../src/server/common/test-helpers/gallery-entry.factory.js'
 
-const AGENT_CONFIG_ENTRY = buildAgentConfigEntry()
+const REPOSITORY_ENTRY = buildRepositoryEntry()
 const PROMPT_ENTRY = buildPromptEntry()
 const WORKFLOW_ENTRY = buildWorkflowEntry()
-const ALL_ENTRIES = [AGENT_CONFIG_ENTRY, PROMPT_ENTRY, WORKFLOW_ENTRY]
+const ALL_ENTRIES = [REPOSITORY_ENTRY, PROMPT_ENTRY, WORKFLOW_ENTRY]
 
 vi.mock('../../../../src/server/services/gallery/service.js', () => ({
   galleryService: {
@@ -24,7 +24,7 @@ const { galleryService } =
   await import('../../../../src/server/services/gallery/service.js')
 
 describe('#homeViewModel', () => {
-  test('returns page title and gallery cards with title, type badge, summary, tags, and author', () => {
+  test('returns page title and gallery cards with title, type badge, summary, and tags', () => {
     const result = homeViewModel.get()
 
     expect(result.pageTitle).toBe('Defra AI Prompt Library')
@@ -35,17 +35,16 @@ describe('#homeViewModel', () => {
     )
     expect(promptCard.typeBadge).toBe('Prompt')
     expect(promptCard.summary).toBe(PROMPT_ENTRY.summary)
-    expect(promptCard.author).toBe(PROMPT_ENTRY.author)
     expect(promptCard.tags).toEqual([
       ...PROMPT_ENTRY.useCaseTags,
       ...PROMPT_ENTRY.toolTags
     ])
     expect(promptCard.href).toBe(`/gallery/${PROMPT_ENTRY.id}`)
 
-    const agentCard = result.galleryCards.find(
-      (c) => c.title === AGENT_CONFIG_ENTRY.title
+    const repositoryCard = result.galleryCards.find(
+      (c) => c.title === REPOSITORY_ENTRY.title
     )
-    expect(agentCard.typeBadge).toBe('Agent Config')
+    expect(repositoryCard.typeBadge).toBe('Repository')
 
     const workflowCard = result.galleryCards.find(
       (c) => c.title === WORKFLOW_ENTRY.title

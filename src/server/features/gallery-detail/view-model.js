@@ -1,8 +1,4 @@
-const TYPE_BADGES = {
-  'agent-config': 'Agent Config',
-  prompt: 'Prompt',
-  workflow: 'Workflow'
-}
+import { typeBadges } from '../../common/constants/type-badges.js'
 
 function buildTagGroups(entry) {
   const groups = []
@@ -37,6 +33,7 @@ function buildSteps(steps) {
     title: step.title,
     context: step.context,
     promptText: step.promptText,
+    hasPrompt: !step.promptText.startsWith('No prompt needed'),
     whatToDoWithOutput: step.whatToDoWithOutput
   }))
 }
@@ -45,7 +42,7 @@ export const galleryDetailViewModel = {
   get(entry) {
     return {
       pageTitle: entry.title,
-      typeBadge: TYPE_BADGES[entry.type],
+      typeBadge: typeBadges[entry.type],
       templateType: entry.type,
       entry: {
         ...entry,

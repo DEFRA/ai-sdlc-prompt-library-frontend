@@ -1,7 +1,7 @@
 [
   {
     "id": "ipaffs-utils",
-    "type": "agent-config",
+    "type": "repository",
     "title": "IPAFFS Utils",
     "summary": "A range of skills to cover all tasks in the software delivery life cycle.",
     "author": "Sam Farrington",
@@ -27,7 +27,7 @@
   },
   {
     "id": "prompt-library",
-    "type": "agent-config",
+    "type": "repository",
     "title": "Prompt Library",
     "summary": "Platform-agnostic coding standards, rules, and skills that work across any AI assistant.",
     "author": "Andy Roberts",
@@ -59,7 +59,7 @@
     "published": "2026-03-13",
     "experienceLevel": "Comfortable",
     "whatThisWorkflowAchieves": "Takes a set of designs — Figma files, screenshots, or written screen descriptions — and turns them into a working GOV.UK prototype built on the Prototype Kit. You walk away with coded pages, routes, and validation that follow GDS patterns, ready to deploy on CDP.",
-    "whyThisWorkflowMatters": "Each agent has one specialist job. The specification agent fills in design gaps and makes assumptions explicit before any code is written. The implementation plan agent catches naming conflicts, broken back links, and pattern violations before they become bugs. By the time the coding agent runs, most of the thinking is done and the output is consistent, predictable code. Fixing a prompt at any stage benefits everyone who uses the workflow after you.",
+    "whyThisWorksForUs": "Our team includes a designer, a business analyst, and two developers. Before this workflow, turning designs into a coded prototype meant the designer handing off screens, the BA writing up page specs, and a developer translating both into code — with constant back-and-forth when details were missed. Now the specification agent does the translation from design to structured spec, the plan agent catches issues the team used to find in code review, and the coding agent produces consistent output. The BA reviews the spec instead of writing it from scratch, the designer gets a working prototype faster, and the developers spend their time reviewing generated code rather than writing boilerplate. The whole loop that used to take a sprint now fits in an afternoon.",
     "whatYoullNeed": [
       "A design document — Figma files, screenshots, or written screen descriptions",
       "A GOV.UK Prototype Kit project to work in",
@@ -76,19 +76,19 @@
       {
         "title": "Run the Journey Specification Agent",
         "context": "This agent acts as a Senior GDS Product Owner. It reads your designs and produces a structured specification with a detailed template for every screen — covering path, title, branching logic, form fields, validation rules, error states, dynamic content, and data properties. It logs every assumption it makes in a Decision Log so nothing is hidden.",
-        "promptText": "Copy the full prompt from the repository at prompts/journey-specification-agent.md. Provide your design artefacts (images, text, or Figma exports) and ask the agent to produce a journey specification. The prompt is around 1,000 lines and contains the complete screen template structure the agent must follow.",
+        "promptFile": "journey-specification-agent.md",
         "whatToDoWithOutput": "Start with the Decision Log — check the assumptions the agent made. Then verify the screen order matches your intended journey. Review each screen template for correctness. Edit anything that does not match the design. This is the cheapest place to catch mistakes."
       },
       {
         "title": "Run the Implementation Plan Agent",
         "context": "This agent validates the specification against the existing codebase before any code is written. It checks 16 categories of issues including path naming (lowercase, hyphenated, specific), data property uniqueness, back link hardcoding, route conflicts, form validation alignment, and GOV.UK pattern compliance. It auto-fixes known issues like JavaScript back links, generic route names, and orphaned validation rules.",
-        "promptText": "Copy the full prompt from the repository at prompts/implementation-plan-agent.md. Give the agent the specification file from the previous step and access to your prototype codebase. It will produce a corrected specification and an implementation plan file (.plan.md) with a prioritised build order.",
+        "promptFile": "implementation-plan-agent.md",
         "whatToDoWithOutput": "Review the summary of changes and the list of conflicts detected. Check the implementation plan and build order — adjust if you disagree with the sequencing. Any issues caught here save significant time in the coding step."
       },
       {
         "title": "Run the Coding Agent",
         "context": "This agent implements the specification. It reads the corrected specification and implementation plan, then writes routes, views, and supporting files following existing codebase patterns. It handles structural changes (new pages, deleted pages, reordering), content replacement, GOV.UK component usage, and styling rules like using govukPanel for confirmation pages and govuk-summary-list for structured data.",
-        "promptText": "Copy the full prompt from the repository at prompts/coding-agent.md. Give the agent the corrected specification, the implementation plan, and access to the codebase. It will create or update routes and views for the journey.",
+        "promptFile": "coding-agent.md",
         "whatToDoWithOutput": "Review the generated code. Check that pages render correctly, validation works, branching logic follows the specification, and styling matches GOV.UK patterns. Run the prototype locally to walk through the journey end to end."
       },
       {
