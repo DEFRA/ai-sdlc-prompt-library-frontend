@@ -41,7 +41,6 @@ feature-create-specification
       → feature-review-styling ┘
         → feature-write  (loops up to 3 times on test failure)
           → feature-review-code
-            → feature-update-docs
               → feature-create-pr
 ```
 

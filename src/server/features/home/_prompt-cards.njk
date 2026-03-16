@@ -7,7 +7,7 @@
             <strong class="govuk-tag
               {% if card.typeBadge === 'Prompt' %}govuk-tag--blue
               {% elif card.typeBadge === 'Workflow' %}govuk-tag--purple
-              {% elif card.typeBadge === 'Agent Config' %}govuk-tag--green
+              {% elif card.typeBadge === 'Repository' %}govuk-tag--green
               {% endif %}"
               aria-label="Type: {{ card.typeBadge }}">
               {{ card.typeBadge }}
@@ -15,8 +15,7 @@
             <h3 class="govuk-heading-m defra-tile__title">
               <a class="defra-tile__link" href="{{ card.href }}">{{ card.title }}</a>
             </h3>
-            <p class="govuk-body-s defra-tile__body">{{ card.summary }}</p>
-            <p class="govuk-body-s">{{ card.author }}</p>
+            <p class="govuk-body defra-tile__body">{{ card.summary }}</p>
           </div>
         </li>
       {% endfor %}

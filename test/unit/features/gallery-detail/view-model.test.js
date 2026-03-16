@@ -1,16 +1,16 @@
 import {
-  buildAgentConfigEntry,
+  buildRepositoryEntry,
   buildPromptEntry,
   buildWorkflowEntry
 } from '../../../../src/server/common/test-helpers/gallery-entry.factory.js'
 
 import { galleryDetailViewModel } from '../../../../src/server/features/gallery-detail/view-model.js'
 
-const AGENT_CONFIG_ENTRY = buildAgentConfigEntry()
-const AGENT_CONFIG_EMPTY_FEATURES = buildAgentConfigEntry({
+const REPOSITORY_ENTRY = buildRepositoryEntry()
+const REPOSITORY_EMPTY_FEATURES = buildRepositoryEntry({
   keyFeatures: []
 })
-const AGENT_CONFIG_EMPTY_SUITABILITY = buildAgentConfigEntry({
+const REPOSITORY_EMPTY_SUITABILITY = buildRepositoryEntry({
   whoThisIsFor: []
 })
 const PROMPT_ENTRY = buildPromptEntry()
@@ -37,38 +37,48 @@ const SINGLE_STEP_WORKFLOW = buildWorkflowEntry({
     }
   ]
 })
+const WORKFLOW_WITH_NO_PROMPT_STEP = buildWorkflowEntry({
+  steps: [
+    {
+      title: 'Gather materials',
+      context: 'Collect your inputs.',
+      promptText: 'No prompt needed for this step.',
+      whatToDoWithOutput: 'Have everything ready.'
+    }
+  ]
+})
 
 describe('#galleryDetailViewModel', () => {
-  describe('agent-config entries', () => {
+  describe('repository entries', () => {
     test('returns page title, design philosophy, key features, suitability, repository link, tags, and metadata', () => {
-      const result = galleryDetailViewModel.get(AGENT_CONFIG_ENTRY)
+      const result = galleryDetailViewModel.get(REPOSITORY_ENTRY)
 
-      expect(result.pageTitle).toBe(AGENT_CONFIG_ENTRY.title)
+      expect(result.pageTitle).toBe(REPOSITORY_ENTRY.title)
       expect(result.entry.designPhilosophy).toBe(
-        AGENT_CONFIG_ENTRY.designPhilosophy
+        REPOSITORY_ENTRY.designPhilosophy
       )
-      expect(result.entry.keyFeatures).toEqual(AGENT_CONFIG_ENTRY.keyFeatures)
-      expect(result.entry.whoThisIsFor).toEqual(AGENT_CONFIG_ENTRY.whoThisIsFor)
-      expect(result.entry.repositoryUrl).toBe(AGENT_CONFIG_ENTRY.repositoryUrl)
+      expect(result.entry.keyFeatures).toEqual(REPOSITORY_ENTRY.keyFeatures)
+      expect(result.entry.whoThisIsFor).toEqual(REPOSITORY_ENTRY.whoThisIsFor)
+      expect(result.entry.repositoryUrl).toBe(REPOSITORY_ENTRY.repositoryUrl)
       expect(result.tagGroups).toEqual([
-        { label: 'Content', tags: AGENT_CONFIG_ENTRY.contentTags },
-        { label: 'Tools', tags: AGENT_CONFIG_ENTRY.toolTags }
+        { label: 'Content', tags: REPOSITORY_ENTRY.contentTags },
+        { label: 'Tools', tags: REPOSITORY_ENTRY.toolTags }
       ])
-      expect(result.metadata.author).toBe(AGENT_CONFIG_ENTRY.author)
-      expect(result.metadata.published).toBe(AGENT_CONFIG_ENTRY.published)
+      expect(result.metadata.author).toBe(REPOSITORY_ENTRY.author)
+      expect(result.metadata.published).toBe(REPOSITORY_ENTRY.published)
       expect(result.metadata.experienceLevel).toBe(
-        AGENT_CONFIG_ENTRY.experienceLevel
+        REPOSITORY_ENTRY.experienceLevel
       )
     })
 
     test('omits key features when array is empty', () => {
-      const result = galleryDetailViewModel.get(AGENT_CONFIG_EMPTY_FEATURES)
+      const result = galleryDetailViewModel.get(REPOSITORY_EMPTY_FEATURES)
 
       expect(result.entry.keyFeatures).toEqual([])
     })
 
     test('omits who-this-is-for when array is empty', () => {
-      const result = galleryDetailViewModel.get(AGENT_CONFIG_EMPTY_SUITABILITY)
+      const result = galleryDetailViewModel.get(REPOSITORY_EMPTY_SUITABILITY)
 
       expect(result.entry.whoThisIsFor).toEqual([])
     })
@@ -124,8 +134,8 @@ describe('#galleryDetailViewModel', () => {
       expect(result.entry.whatThisWorkflowAchieves).toBe(
         WORKFLOW_ENTRY.whatThisWorkflowAchieves
       )
-      expect(result.entry.whyThisWorkflowMatters).toBe(
-        WORKFLOW_ENTRY.whyThisWorkflowMatters
+      expect(result.entry.whyThisWorksForUs).toBe(
+        WORKFLOW_ENTRY.whyThisWorksForUs
       )
       expect(result.entry.whatYoullNeed).toEqual(WORKFLOW_ENTRY.whatYoullNeed)
       expect(result.entry.steps).toHaveLength(2)
@@ -162,6 +172,18 @@ describe('#galleryDetailViewModel', () => {
       expect(result.entry.steps).toHaveLength(1)
       expect(result.entry.steps[0].number).toBe(1)
       expect(result.entry.steps[0].title).toBe('Only step')
+    })
+
+    test('derives hasPrompt as true for steps with a real prompt', () => {
+      const result = galleryDetailViewModel.get(SINGLE_STEP_WORKFLOW)
+
+      expect(result.entry.steps[0].hasPrompt).toBe(true)
+    })
+
+    test('derives hasPrompt as false for steps with no prompt needed', () => {
+      const result = galleryDetailViewModel.get(WORKFLOW_WITH_NO_PROMPT_STEP)
+
+      expect(result.entry.steps[0].hasPrompt).toBe(false)
     })
   })
 })

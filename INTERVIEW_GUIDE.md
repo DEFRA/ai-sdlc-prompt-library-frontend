@@ -1,14 +1,14 @@
-# Agent Config Repository — Interview Guide
+# Repository — Interview Guide
 
-Use this guide when interviewing someone who wants to submit an agent config repository to the Defra AI Prompt Library. Ask the questions below, record their answers, then use the responses to complete a new entry in `src/server/services/gallery/data/entries.json`.
+Use this guide when interviewing someone who wants to submit a repository to the Defra AI Prompt Library. Ask the questions below, record their answers, then use the responses to complete a new entry in `src/server/services/gallery/data/entries.json`.
 
 ---
 
 ## 1. About you and your repo
 
-- **What is the name of your agent config?**
+- **What is the name of your repository?**
 - **Who should be credited as the author?** This could be a person or a team name.
-- **Give me a one-line summary of what this config does.**
+- **Give me a one-line summary of what this repository does.**
 - **What experience level is this aimed at?** (Getting started / Comfortable / Advanced)
 - **What is the repository URL?**
 
@@ -16,7 +16,7 @@ Use this guide when interviewing someone who wants to submit an agent config rep
 
 ## 2. Design philosophy
 
-- **What problem were you trying to solve when you created this config?**
+- **What problem were you trying to solve when you created this repository?**
 - **What principles or opinions guide the way it is set up?** For example, is it opinionated about code style, testing approach, or review process? Is it designed to be tool-agnostic?
 - **How does it make AI-assisted development more consistent or reliable for your team?**
 
@@ -24,7 +24,7 @@ Use this guide when interviewing someone who wants to submit an agent config rep
 
 ## 3. Key features
 
-- **Walk me through the main things this config provides.** For example, rules files, skills, templates, project configuration, review checklists.
+- **Walk me through the main things this repository provides.** For example, rules files, skills, templates, project configuration, review checklists.
 - **How many rules or skills does it include?**
 - **Is there anything unusual or distinctive about it compared to a default setup?**
 
@@ -32,7 +32,7 @@ Use this guide when interviewing someone who wants to submit an agent config rep
 
 ## 4. Who this is for
 
-- **Who benefits most from using this config?** Describe the teams, roles, or situations where it adds the most value.
+- **Who benefits most from using this repository?** Describe the teams, roles, or situations where it adds the most value.
 - **Are there any prerequisites?** For example, does the team need to be using a specific AI tool, framework, or language?
 
 ---
@@ -51,7 +51,7 @@ Once you have the answers, create a new object in `entries.json` using the schem
 ```json
 {
   "id": "",
-  "type": "agent-config",
+  "type": "repository",
   "title": "",
   "summary": "",
   "author": "",
@@ -70,7 +70,7 @@ Once you have the answers, create a new object in `entries.json` using the schem
 
 | Interview section                                    | JSON field           |
 | ---------------------------------------------------- | -------------------- |
-| Name of your agent config                            | `title`              |
+| Name of your repository                              | `title`              |
 | Author                                               | `author`             |
 | One-line summary                                     | `summary`            |
 | Experience level                                     | `experienceLevel`    |

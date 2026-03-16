@@ -1,10 +1,5 @@
 import { galleryService } from '../../services/gallery/service.js'
-
-const TYPE_BADGES = {
-  'agent-config': 'Agent Config',
-  prompt: 'Prompt',
-  workflow: 'Workflow'
-}
+import { typeBadges } from '../../common/constants/type-badges.js'
 
 function allTags(entry) {
   return [
@@ -17,10 +12,9 @@ function allTags(entry) {
 function toCard(entry) {
   return {
     title: entry.title,
-    typeBadge: TYPE_BADGES[entry.type],
+    typeBadge: typeBadges[entry.type],
     summary: entry.summary,
     tags: allTags(entry),
-    author: entry.author,
     href: `/gallery/${entry.id}`
   }
 }

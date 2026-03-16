@@ -373,7 +373,7 @@ Displayed in a CSS Grid with equal-height rows. Do not use `govuk-grid-row` / `g
 }
 
 .defra-tile__body {
-  /* uses govuk-body-s */
+  /* uses govuk-body */
   margin-bottom: 0;
 }
 ```
@@ -423,7 +423,7 @@ Uses `govuk-breadcrumbs` as base, with Defra modifier for dark backgrounds:
 ### 7.9 Side Navigation
 
 ```css
-.app-subnav__link--current {
+.defra-subnav__link--current {
   background-color: #f3f2f1;
   border-left: 4px solid #008531;
   display: block;

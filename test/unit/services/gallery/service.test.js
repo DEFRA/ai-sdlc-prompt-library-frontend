@@ -1,15 +1,15 @@
 import { vi } from 'vitest'
 
 import {
-  buildAgentConfigEntry,
+  buildRepositoryEntry,
   buildPromptEntry,
   buildWorkflowEntry
 } from '../../../../src/server/common/test-helpers/gallery-entry.factory.js'
 
-const AGENT_CONFIG_ENTRY = buildAgentConfigEntry()
+const REPOSITORY_ENTRY = buildRepositoryEntry()
 const PROMPT_ENTRY = buildPromptEntry()
 const WORKFLOW_ENTRY = buildWorkflowEntry()
-const ALL_ENTRIES = [AGENT_CONFIG_ENTRY, PROMPT_ENTRY, WORKFLOW_ENTRY]
+const ALL_ENTRIES = [REPOSITORY_ENTRY, PROMPT_ENTRY, WORKFLOW_ENTRY]
 
 const mockData = ALL_ENTRIES
 

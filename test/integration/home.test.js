@@ -26,6 +26,6 @@ describe('#homeController', () => {
     expect(result).toContain('IPAFFS Utils')
     expect(result).toContain('Prompt')
     expect(result).toContain('Workflow')
-    expect(result).toContain('Agent Config')
+    expect(result).toContain('Repository')
   })
 })

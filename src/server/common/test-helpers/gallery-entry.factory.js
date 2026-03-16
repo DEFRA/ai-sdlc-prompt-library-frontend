@@ -1,6 +1,6 @@
-export const buildAgentConfigEntry = (overrides = {}) => ({
-  id: 'agent-config-1',
-  type: 'agent-config',
+export const buildRepositoryEntry = (overrides = {}) => ({
+  id: 'repository-1',
+  type: 'repository',
   title: 'Defra AI Coding Standards',
   summary:
     'Rules and skills for consistent AI-assisted development across Defra.',
@@ -57,7 +57,7 @@ export const buildWorkflowEntry = (overrides = {}) => ({
   experienceLevel: 'Advanced',
   whatThisWorkflowAchieves:
     'Takes a raw backlog and produces a fully planned sprint with sized stories and task breakdowns.',
-  whyThisWorkflowMatters:
+  whyThisWorksForUs:
     'Breaking planning into steps lets you review and adjust at each stage rather than trusting a single prompt.',
   whatYoullNeed: [
     'Access to the product backlog',
