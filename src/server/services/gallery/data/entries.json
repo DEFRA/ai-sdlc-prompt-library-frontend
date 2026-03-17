@@ -121,5 +121,28 @@
       "Have good system knowledge of the work being refined",
       "Use a powerful model with a large context window — long transcripts struggle on smaller models"
     ]
+  },
+  {
+    "id": "webdriverio-automated-test-rules",
+    "type": "repository",
+    "title": "WebDriverIO Automated Test Rules",
+    "summary": "Rules for writing WebDriverIO automated tests using a consistent Page Object Model pattern.",
+    "author": "Muhammad Uddin",
+    "published": "2026-03-17",
+    "experienceLevel": "Getting started",
+    "repositoryUrl": "https://github.com/DEFRA/trade-imports-frontend-tests",
+    "designPhilosophy": "The BTMS team was delivering against tight deadlines and relying heavily on manual testing. Automated integration tests were falling behind releases, increasing the risk of regression over time. These rules were created so that AI-generated tests could keep pace with feature delivery. The driving principle is consistency above all else — the team wanted an opinionated pattern based on their definition of best practices so that anyone contributing tests would produce code in the same style. The rules enforce strict Page Object Model separation, keeping selectors in getters, interactions in page objects, and assertions in test specs. The format of the rules file itself is deliberately well-structured, so even teams who use a different testing approach can adopt the format as a template for writing their own effective AI rules.",
+    "keyFeatures": [
+      "Enforces Page Object Model separation with clear rules for encapsulation, abstraction, and maintainability",
+      "Provides spec test conventions that keep assertions in tests and interactions in page objects",
+      "Includes good and bad code examples so AI tools understand the expected patterns",
+      "Uses a structured format with must-have, should-have, and could-have rule tiers plus decision frameworks and quality gates"
+    ],
+    "whoThisIsFor": [
+      "QA engineers and developers getting started with AI-assisted automated testing using WebDriverIO",
+      "Teams looking for a well-structured rules format to adapt for their own test framework or coding standards"
+    ],
+    "contentTags": ["Rules"],
+    "toolTags": ["GitHub Copilot"]
   }
 ]
